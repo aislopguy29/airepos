@@ -212,27 +212,55 @@ def build(spec, root, out_dir, stills=None, log=print):
             bb = E.smooth((v - (total - LOOP)) / LOOP); f = cv2.addWeighted(f, 1 - bb, draw(0, False), bb, 0)
         return f
 
-    # ---------------- audio
-    mix = E.Mix(total); mix.add(0.02, E.chord([60, 67, 72], 1.2), .25); mix.add(0.0, E.whoosh(.5), .2)
-    for (vt_, e) in hit_ev:
+    # ---------------- audio: 8-bit arcade fighter (distinct from the kalimba series)
+    SR = E.SR; tt = lambda d: np.arange(int(d * SR)) / SR
+    def sq(f, d, decay=6.0, duty=.5, vol=.35):
+        t_ = tt(d); ph = (t_ * f) % 1.0; w = np.where(ph < duty, 1.0, -1.0)
+        return (w * np.exp(-t_ * decay) * (1 - np.exp(-t_ * 2000)) * vol).astype(np.float32)
+    def tri(f, d, decay=5.0, vol=.45):
+        t_ = tt(d); w = 2 * np.abs(2 * ((t_ * f) % 1.0) - 1) - 1
+        return (w * np.exp(-t_ * decay) * vol).astype(np.float32)
+    def sweep(f0, f1, d, duty=.25, vol=.3):
+        t_ = tt(d); f = f0 * (f1 / f0) ** (t_ / d); ph = np.cumsum(f) / SR % 1.0
+        return (np.where(ph < duty, 1.0, -1.0) * (1 - t_ / d) * vol).astype(np.float32)
+    def noise(d, decay=25, vol=.4, seed=0, lp=1):
+        n = np.random.default_rng(seed).standard_normal(len(tt(d)))
+        if lp > 1: n = np.convolve(n, np.ones(lp) / lp, "same")
+        return (n * np.exp(-tt(d) * decay) * vol).astype(np.float32)
+    hz = lambda m: float(E.midi_hz(m))
+    mix = E.Mix(total)
+    # "READY... FIGHT" arcade intro
+    mix.add(0.0, sq(hz(72), .12, 10), .5); mix.add(.14, sq(hz(79), .12, 10), .5); mix.add(.28, sweep(300, 1400, .35), .5)
+    # driving beat: kick on beats, hats on offbeats, square bass on a minor riff; doubles hats when someone is low
+    bpm = 132; beat = 60 / bpm; t_low = next((f["t"] for f in fr if f["hp"].min() < 30), None); v_low = vid_t(t_low) if t_low is not None else 1e9
+    riff = [45, 45, 48, 45, 52, 50, 48, 43]; k = 0; tb = .55
+    while tb < v_end - .05:
+        intense = tb >= v_low; slow = tb >= v_slow0
+        kick = E.thump(.22, 160, 45); mix.add(tb, kick, .55 if not slow else .35)
+        mix.add(tb, sq(hz(riff[k % 8] + (12 if intense else 0) * 0), beat * .9, 7, .25, .22), .55)
+        mix.add(tb + beat / 2, noise(.05, 70, .25, k, 1), .35)
+        if intense: mix.add(tb + beat / 4, noise(.04, 80, .2, k + 99, 1), .3); mix.add(tb + 3 * beat / 4, noise(.04, 80, .2, k + 199, 1), .3)
+        if k % 4 == 2: mix.add(tb, noise(.12, 30, .35, k + 7, 3), .45)          # snare on 3
+        tb += beat * (1 if not slow else 1 / SLOW); k += 1
+    for (vt_, e) in hit_ev:                                                        # hits: crunchy noise + falling square
         if vt_ > v_end: continue
-        dm = e[3] + e[4]; pan = (e[2][0] - W / 2) / (W / 2) * .5
-        mix.add(vt_, E.thump(.35, 180 + dm * 4, 50), .4 + min(.6, dm / 40)); mix.add(vt_, E.tick(900 + dm * 20, .05), .25, pan)
-        if dm > 20: mix.add(vt_, E.whoosh(.3, int(vt_ * 100)), .25)
-    arps = {"power": [0, 7, 12], "speed": [0, 4, 7, 12], "heal": [0, 4, 7]}
-    for (vt_, e) in pick_ev:
+        dm = e[3] + e[4]; pan = (e[2][0] - W / 2) / (W / 2) * .5; big = dm > 20
+        mix.add(vt_, noise(.18 if big else .1, 22, .5, int(vt_ * 1000), 2), .55 + min(.4, dm / 50), pan)
+        mix.add(vt_, sweep(900 if big else 650, 120, .22 if big else .14, .5, .35), .5, pan)
+        if big: mix.add(vt_, E.thump(.3, 120, 40), .6)
+    for (vt_, e) in pick_ev:                                                       # pickups: coin / power-up jingles
         if vt_ > v_end: continue
-        kind = kits[e[2]]["items"][e[3]][1]; root = 72 if e[2] == 0 else 67; pan = -.4 if e[2] == 0 else .4
-        for j, st in enumerate(arps[kind]): mix.add(vt_ + j * .055, E.kalimba(float(E.midi_hz(root + st)), .7), .35, pan)
-    # tension heartbeat when someone is low
-    t_low = next((f["t"] for f in fr if f["hp"].min() < 30), None)
-    if t_low is not None:
-        vt_ = vid_t(t_low)
-        while vt_ < v_end - .2: mix.add(vt_, E.thump(.3, 220, 70), .45); vt_ += .55 if vt_ < v_slow0 else .9
-    mix.add(v_slow0, E.riser(v_end - v_slow0, 300, 2600), .45)
-    mix.add(v_end, E.thump(1.3, 130, 30), 1.0); mix.add(v_end, E.slide_down(1.0, 500, 140), .35)
-    mix.add(v_end + .3, E.chord([60, 64, 67, 72], 2.8), .45); mix.add(v_end + .9, E.bell(float(E.midi_hz(84)), 2.0), .18)
-    wav = os.path.join(out_dir, spec["name"] + ".wav"); mix.write(wav)
+        kind = kits[e[2]]["items"][e[3]][1]; pan = -.4 if e[2] == 0 else .4; base = 76 if e[2] == 0 else 74
+        if kind == "heal":
+            for j, st in enumerate([0, 4, 7, 12]): mix.add(vt_ + j * .06, tri(hz(base + st), .18, 9), .45, pan)
+        elif kind == "speed": mix.add(vt_, sweep(500, 2400, .25, .5, .3), .45, pan)
+        else: mix.add(vt_, sq(hz(base - 5), .07, 12), .45, pan); mix.add(vt_ + .07, sq(hz(base + 7), .25, 6), .45, pan)
+    mix.add(v_slow0, E.riser(v_end - v_slow0, 200, 3000), .4)
+    mix.add(v_end, noise(.9, 5, .6, 42, 4), .9); mix.add(v_end, E.thump(1.2, 110, 28), 1.0)       # KO boom
+    for j, m in enumerate([72, 76, 79, 84, 79, 84]):                                             # victory fanfare
+        mix.add(v_end + .45 + j * .13, sq(hz(m), .35 if j < 5 else .9, 4, .25, .3), .5)
+        mix.add(v_end + .45 + j * .13, tri(hz(m - 12), .35 if j < 5 else .9, 3), .35)
+    wav = os.path.join(out_dir, spec["name"] + ".wav"); mix.write(wav, peak=.78)
     if stills:
         for t_ in stills: E.save_png(os.path.join(out_dir, f"{spec['name']}_still_{t_:05.2f}.png"), draw(int(t_ * FPS)))
         return dict(still_only=True, total=total, v_end=v_end)
