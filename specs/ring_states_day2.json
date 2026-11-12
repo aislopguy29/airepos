@@ -1,0 +1,25 @@
+{
+ "name": "ring_states_day2",
+ "style": "ring_elimination",
+ "series": "STATE ELIMINATION",
+ "episode": 2,
+ "entities_csv": "data/state_pop_2025.csv",
+ "title": "LAST ONE INSIDE IS OUT",
+ "hook_sub": "50 STATES \u00b7 1 GAP \u00b7 WHO ESCAPES LAST?",
+ "cta_mid": "ROOTING FOR A STATE? DROP IT BELOW",
+ "cta_end": "WHICH STATE ARE YOU ROOTING FOR?",
+ "source_line": "Source: U.S. Census Bureau, Vintage 2025 Population Estimates \u00b7 circle size = population (scaled)",
+ "eliminated_before": [
+  "MI"
+ ],
+ "seed": 1,
+ "seed_tries": 24,
+ "sim_len": [
+  10,
+  30
+ ],
+ "max_photo_finish": 3.0,
+ "body_seconds": 15.0,
+ "slowmo": 0.5,
+ "card_seconds": 3.6
+}

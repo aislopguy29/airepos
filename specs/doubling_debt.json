@@ -1,0 +1,7 @@
+{
+ "name": "doubling_debt", "style": "neon_doubling",
+ "benchmarks": "data/dollar_benchmarks.json",
+ "title": "EVERY BOUNCE = 2×", "question": "CAN $1 PASS THE NATIONAL DEBT?",
+ "source_line": "Sources: U.S. Treasury Fiscal Data (Debt to the Penny, 11/9/2026) · Census Bureau (2025) · Dept. of Labor",
+ "star_step": 15, "card_seconds": 4.0
+}

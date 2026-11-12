@@ -1,0 +1,16 @@
+[
+ {"series_name":"State resident population, July 1 2025","agency":"U.S. Census Bureau","dataset_or_series_id":"Vintage 2025 Population Estimates, NST-EST2025-ALLDATA (POPESTIMATE2025)",
+  "url":"https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/state/totals/NST-EST2025-ALLDATA.csv","release_date":"2026-01","retrieved_date":"2026-11-12",
+  "units":"persons","geography":"50 states + DC","period_covered":"2025-07-01","nominal_or_real":"n/a","seasonally_adjusted":"n/a","vintage_or_revision_status":"Vintage 2025; superseded by Vintage 2026 (Dec 2026)",
+  "derived":"rank_of_51 (sort)","checks":"51 values sum exactly to US total 341,784,857; all 4 region and 9 division subtotals match; NJ and PR values match the NST-EST2025-POP table copy","confidence":"High"},
+ {"series_name":"Total public debt outstanding","agency":"U.S. Treasury, Bureau of the Fiscal Service","dataset_or_series_id":"Debt to the Penny (tot_pub_debt_out_amt)",
+  "url":"https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny","retrieved_date":"2026-11-12","units":"USD (nominal)","period_covered":"2026-11-09",
+  "value":40559796589243.37,"checks":"re-pulled with a second independent query, identical value","confidence":"Medium-High (primary source, re-pulled; no second agency publishes the daily figure)"},
+ {"series_name":"Real median household income, 2025","agency":"U.S. Census Bureau","dataset_or_series_id":"Income in the United States: 2025 (CPS ASEC), press release CB26-151",
+  "url":"https://www.census.gov/newsroom/press-releases/2026/income-poverty-health-insurance-coverage.html","release_date":"2026-09-15","retrieved_date":"2026-11-12","units":"2025 dollars","value":87460,
+  "checks":"value read from census.gov release; consistent with independent news coverage of the same release","confidence":"High"},
+ {"series_name":"Federal minimum wage","agency":"U.S. Department of Labor, Wage and Hour Division","dataset_or_series_id":"FLSA minimum wage FAQ",
+  "url":"https://www.dol.gov/agencies/whd/minimum-wage/faq","retrieved_date":"2026-11-12","units":"USD per hour","value":7.25,"effective":"2009-07-24","confidence":"High"},
+ {"series_name":"Planet diameters","agency":"NASA Goddard (NSSDCA)","dataset_or_series_id":"Planetary Fact Sheet - Metric, 'Diameter (km)'",
+  "url":"https://nssdc.gsfc.nasa.gov/planetary/factsheet/","release_date":"2025-03-18","retrieved_date":"2026-11-12","units":"km","note":"collected for the next template (merge ladder); not used in the two rendered videos","confidence":"Medium (single read, not yet cross-checked)"}
+]

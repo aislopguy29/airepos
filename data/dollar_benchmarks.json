@@ -1,0 +1,17 @@
+[
+ {
+  "value": 7.25,
+  "label": "FEDERAL MINIMUM WAGE (PER HOUR)",
+  "detail": "Dept. of Labor, Wage and Hour Division, FLSA (effective 2009-07-24)"
+ },
+ {
+  "value": 87460.0,
+  "label": "MEDIAN HOUSEHOLD INCOME",
+  "detail": "Census Bureau, Income in the United States: 2025 (real, 2025 dollars)"
+ },
+ {
+  "value": 40559796589243.37,
+  "label": "TOTAL PUBLIC DEBT OUTSTANDING",
+  "detail": "Treasury Fiscal Data, Debt to the Penny, 2026-11-09"
+ }
+]

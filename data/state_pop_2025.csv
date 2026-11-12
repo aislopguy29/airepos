@@ -1,0 +1,52 @@
+code,name,region,division,population,rank_of_51
+CA,California,West,Pacific,39355309,1
+TX,Texas,South,West South Central,31709821,2
+FL,Florida,South,South Atlantic,23462518,3
+NY,New York,Northeast,Middle Atlantic,20002427,4
+PA,Pennsylvania,Northeast,Middle Atlantic,13059432,5
+IL,Illinois,Midwest,East North Central,12719141,6
+OH,Ohio,Midwest,East North Central,11900510,7
+GA,Georgia,South,South Atlantic,11302748,8
+NC,North Carolina,South,South Atlantic,11197968,9
+MI,Michigan,Midwest,East North Central,10127884,10
+NJ,New Jersey,Northeast,Middle Atlantic,9548215,11
+VA,Virginia,South,South Atlantic,8880107,12
+WA,Washington,West,Pacific,8001020,13
+AZ,Arizona,West,Mountain,7623818,14
+TN,Tennessee,South,East South Central,7315076,15
+MA,Massachusetts,Northeast,New England,7154084,16
+IN,Indiana,Midwest,East North Central,6973333,17
+MO,Missouri,Midwest,West North Central,6270541,18
+MD,Maryland,South,South Atlantic,6265347,19
+CO,Colorado,West,Mountain,6012561,20
+WI,Wisconsin,Midwest,East North Central,5972787,21
+MN,Minnesota,Midwest,West North Central,5830405,22
+SC,South Carolina,South,South Atlantic,5570274,23
+AL,Alabama,South,East South Central,5193088,24
+LA,Louisiana,South,West South Central,4618189,25
+KY,Kentucky,South,East South Central,4606864,26
+OR,Oregon,West,Pacific,4273586,27
+OK,Oklahoma,South,West South Central,4123288,28
+CT,Connecticut,Northeast,New England,3688496,29
+UT,Utah,West,Mountain,3538904,30
+NV,Nevada,West,Mountain,3282188,31
+IA,Iowa,Midwest,West North Central,3238387,32
+AR,Arkansas,South,West South Central,3114791,33
+KS,Kansas,Midwest,West North Central,2977220,34
+MS,Mississippi,South,East South Central,2954160,35
+NM,New Mexico,West,Mountain,2125498,36
+ID,Idaho,West,Mountain,2029733,37
+NE,Nebraska,Midwest,West North Central,2018006,38
+WV,West Virginia,South,South Atlantic,1766147,39
+HI,Hawaii,West,Pacific,1432820,40
+NH,New Hampshire,Northeast,New England,1415342,41
+ME,Maine,Northeast,New England,1414874,42
+MT,Montana,West,Mountain,1144694,43
+RI,Rhode Island,Northeast,New England,1114521,44
+DE,Delaware,South,South Atlantic,1059952,45
+SD,South Dakota,Midwest,West North Central,935094,46
+ND,North Dakota,Midwest,West North Central,799358,47
+AK,Alaska,West,Pacific,737270,48
+DC,District of Columbia,South,South Atlantic,693645,49
+VT,Vermont,Northeast,New England,644663,50
+WY,Wyoming,West,Mountain,588753,51
