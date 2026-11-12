@@ -50,7 +50,7 @@ def main():
     if len(allc) - len(st["removed"]) < 3:                       # season over -> new season with everyone back
         st.update(season=st["season"] + 1, episode=1, removed=[])
     spec = dict(MODES[st["mode"]], name=f"daily_{slot}", style="ring_elimination", series=st["series"], episode=st["episode"],
-                entities_csv="data/state_pop_2025.csv", source_line=SOURCE, mode=st["mode"],
+                entities_csv="data/state_pop_2025.csv", source_line=SOURCE, mode=st["mode"], watermark="@eas.ydata",
                 shield=(shield if shield and shield not in st["removed"] and st["mode"] == "elim" else None), eliminated_before=st["removed"],
                 seed=1 + st["episode"] * 7 + st["season"] * 101 + (0 if slot == "a" else 50), seed_tries=24,
                 sim_len=[10, 30], max_photo_finish=3.0, body_seconds=15.0, slowmo=0.5, card_seconds=3.6, cover_t=0.9)

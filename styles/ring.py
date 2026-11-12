@@ -138,6 +138,8 @@ def build(spec, root, out_dir, smoke=None, stills=None, log=print):
     bg = E.make_bg(top=(6, 8, 20), bottom=(18, 8, 36), glow=(35, 40, 100))
     ov = bg.copy(); cv2.circle(ov, (CX, CY), R - 4, (4, 5, 14), -1, cv2.LINE_AA); cv2.addWeighted(ov, .5, bg, .5, 0, bg)
     E.bake_source_bar(bg, spec["source_line"])
+    if spec.get("watermark"):                                   # small handle watermark, baked into every frame
+        E.blit(bg, E.text_sprite(spec["watermark"], 26, (235, 235, 245), "bold", stroke=2, stroke_color=(0, 0, 0)), W - 48, 1590, alpha=.6, anchor="r")
     sprites = []
     for e_, rr in zip(ents, r):
         col = REGION[e_["region"]]; sprites.append(dict(
