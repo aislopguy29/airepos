@@ -27,7 +27,7 @@ def main():
     vid = os.path.join(ROOT, "posts", f"{today}_c.mp4"); meta = vid[:-4] + ".json"
     if os.path.exists(meta): print("POST_JSON=" + open(meta).read().strip()); return
     (a, b), stage = matchup(day, st["winners"])
-    spec = dict(name="daily_c", a=a, b=b, day=day, stage=stage, seed=1 + day * 13, watermark="@eas.ydata", next=next_text(day, st["winners"]))
+    spec = dict(name="daily_c", a=a, b=b, day=day, stage=stage, seed=1 + (day - 1) * 13, watermark="@eas.ydata", next=next_text(day, st["winners"]))
     if day == 7: spec.update(win_text="{n} IS CHAMPION", card_q="DID YOUR PICK WIN?")
     os.makedirs(os.path.join(ROOT, "out"), exist_ok=True); os.makedirs(os.path.dirname(vid), exist_ok=True)
     res = clash.build(spec, ROOT, os.path.join(ROOT, "out"), log=lambda *x: print(*x, file=sys.stderr)); shutil.copy(res["mp4"], vid)
