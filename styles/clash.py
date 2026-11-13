@@ -104,7 +104,7 @@ def pick_seed(a, b, base, tries=40, log=print):
         lead = [np.sign(f["hp"][0] - f["hp"][1]) for f in sim["frames"]]; changes = sum(1 for i in range(1, len(lead)) if lead[i] and lead[i - 1] and lead[i] != lead[i - 1])
         w_hp = sim["hp"][sim["winner"]]; picks = sum(1 for e in sim["ev"] if e[0] == "pick")
         score = -abs(sim["T"] - 22) / 6 - abs(w_hp - 18) / 15 + min(changes, 3) * .6 + min(picks, 8) * .1
-        if 14 <= sim["T"] <= 32 and w_hp <= 40 and (best is None or score > best[0]): best = (score, seed, sim)
+        if 14 <= sim["T"] <= 32 and 0 < w_hp <= 40 and (best is None or score > best[0]): best = (score, seed, sim)
     assert best, "no good seed"; log(f"[clash] seed {best[1]}: T={best[2]['T']:.1f}s winner HP {best[2]['hp'][best[2]['winner']]:.0f}"); return best[1], best[2]
 
 # ---------------------------------------------------------------- build
