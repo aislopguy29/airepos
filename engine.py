@@ -165,9 +165,178 @@ def whoosh(dur=0.35, seed=3):
     n = np.convolve(n, np.ones(14)/14, "same"); env = np.sin(np.pi * t / dur) ** 2
     return (n * env * .5).astype(np.float32)
 
+# ---------------------------------------------------------------- music-bed instruments (all original synthesis)
+SCALES = {"major": [0, 2, 4, 5, 7, 9, 11], "minor": [0, 2, 3, 5, 7, 8, 10], "dorian": [0, 2, 3, 5, 7, 9, 10],
+          "mixolydian": [0, 2, 4, 5, 7, 9, 10], "lydian": [0, 2, 4, 6, 7, 9, 11], "phrygian": [0, 1, 3, 5, 7, 8, 10],
+          "harmonic_minor": [0, 2, 3, 5, 7, 8, 11]}
+def _noise(n, seed): return np.random.default_rng(seed).standard_normal(n)
+def _hp(x, k=3):
+    return x - np.convolve(x, np.ones(k) / k, "same")
+def epiano(freq, dur=1.2):
+    """Soft FM electric piano (tine + bark), slight tremolo."""
+    k = ("ep", round(freq, 2), dur)
+    if k in _inst: return _inst[k]
+    t = _t(dur); env = np.exp(-t * 1.7) * (1 - np.exp(-t * 500))
+    s = np.sin(2*np.pi*freq*t + 1.1*np.exp(-t*3.5)*np.sin(2*np.pi*freq*t)) + .18*np.sin(2*np.pi*freq*4*t)*np.exp(-t*14)
+    s *= 1 + .12 * np.sin(2*np.pi*4.6*t)
+    _inst[k] = (s * env * .45).astype(np.float32); return _inst[k]
+def piano(freq, dur=1.4):
+    k = ("pi", round(freq, 2), dur)
+    if k in _inst: return _inst[k]
+    t = _t(dur); s = np.zeros_like(t)
+    for h, a in ((1, 1), (2, .45), (3, .22), (4, .12), (5, .06)): s += a * np.sin(2*np.pi*freq*h*1.0007**h*t) * np.exp(-t*(1.4 + h*.9))
+    _inst[k] = (s * (1 - np.exp(-t * 700)) * .4).astype(np.float32); return _inst[k]
+def pluck(freq, dur=0.8):
+    k = ("pl", round(freq, 2), dur)
+    if k in _inst: return _inst[k]
+    t = _t(dur); s = np.zeros_like(t)
+    for h in range(1, 9): s += np.sin(2*np.pi*freq*h*t) / h * np.exp(-t*(3 + h*2.2))
+    _inst[k] = (s * (1 - np.exp(-t * 900)) * .45).astype(np.float32); return _inst[k]
+def marimba(freq, dur=0.7):
+    k = ("ma", round(freq, 2), dur)
+    if k in _inst: return _inst[k]
+    t = _t(dur); s = np.sin(2*np.pi*freq*t)*np.exp(-t*6) + .3*np.sin(2*np.pi*freq*3.93*t)*np.exp(-t*22)
+    _inst[k] = (s * (1 - np.exp(-t * 1500)) * .55).astype(np.float32); return _inst[k]
+def pulse(freq, dur=0.25, duty=.25, decay=6.0):
+    t = _t(dur); ph = (freq * t) % 1.0; s = np.where(ph < duty, 1.0, -1.0) - (2 * duty - 1)
+    s = np.convolve(s, np.ones(3) / 3, "same")
+    return (s * np.exp(-t * decay) * (1 - np.exp(-t * 2000)) * .22).astype(np.float32)
+def triangle(freq, dur=0.3, decay=4.0):
+    t = _t(dur); s = 2 / np.pi * np.arcsin(np.sin(2*np.pi*freq*t))
+    return (s * np.exp(-t * decay) * (1 - np.exp(-t * 2000)) * .4).astype(np.float32)
+def saw(freq, dur=0.5, harm=10, attack=.01, decay=3.0, detune=0.0):
+    t = _t(dur); s = np.zeros_like(t)
+    for d in ((0.0,) if not detune else (-detune, 0.0, detune)):
+        f = freq * (1 + d)
+        for h in range(1, harm + 1):
+            if f * h > 9000: break
+            s += np.sin(2*np.pi*f*h*t + h) / h
+    env = (1 - np.exp(-t / max(attack, 1e-3))) * np.exp(-t * decay)
+    return (s * env * .18).astype(np.float32)
+def pad(freqs, dur=3.0, attack=.6, release=.8, harm=6):
+    t = _t(dur); s = np.zeros_like(t)
+    for f in freqs:
+        for d in (-.004, .0, .0045):
+            for h in range(1, harm + 1): s += np.sin(2*np.pi*f*(1 + d)*h*t + 1.7*h + d*900) / (h ** 1.4)
+    env = np.minimum(1, t / attack) * np.minimum(1, (dur - t) / release)
+    return (s * env * (.11 / max(1, len(freqs)) ** .5)).astype(np.float32)
+def sub(freq, dur=0.6, decay=2.5):
+    t = _t(dur); s = np.sin(2*np.pi*freq*t) + .15*np.sin(4*np.pi*freq*t)
+    return (s * np.exp(-t * decay) * (1 - np.exp(-t * 300)) * .6).astype(np.float32)
+def snare(dur=0.18, seed=5, tone=185):
+    t = _t(dur); n = _hp(_noise(len(t), seed), 4)
+    s = .8 * n * np.exp(-t * 22) + .5 * np.sin(2*np.pi*tone*t) * np.exp(-t * 30)
+    return (s * .5).astype(np.float32)
+def hat(dur=0.05, seed=7, open_=False):
+    t = _t(dur); n = _hp(_noise(len(t), seed), 2)
+    return (n * np.exp(-t * (14 if open_ else 75)) * .3).astype(np.float32)
+def brush(dur=0.22, seed=9):
+    t = _t(dur); n = np.convolve(_noise(len(t), seed), np.ones(5) / 5, "same")
+    return (n * np.sin(np.pi * t / dur) ** 1.5 * .35).astype(np.float32)
+def rim(dur=0.06):
+    t = _t(dur); s = np.sin(2*np.pi*1750*t) * np.exp(-t * 90) + .4*np.sin(2*np.pi*520*t) * np.exp(-t * 60)
+    return (s * .35).astype(np.float32)
+def vinyl(dur, seed=11):
+    rng = np.random.default_rng(seed); n = int(dur * SR)
+    s = np.convolve(rng.standard_normal(n), np.ones(40) / 40, "same") * .25
+    for i in rng.integers(0, n, int(dur * 7)): s[i:i + 30] += rng.uniform(-.9, .9) * np.exp(-np.arange(min(30, n - i)) / 5)
+    return (s * .12).astype(np.float32)
+
+# mood presets for Mix.bed (rotate per VARIETY_RULES.md); every value can be overridden through Mix(mood=..., scale=..., bpm=..., timbre=..., root=...)
+MOODS = {
+    "lofi":       dict(bpm=84,  scale="dorian",  root=50, prog=[0, 3, 6, 4], timbre="epiano",  comp="stabs", bass="sub",     kit="lofi",  swing=.6,  extra="vinyl"),
+    "piano_arp":  dict(bpm=96,  scale="major",   root=55, prog=[0, 5, 3, 4], timbre="piano",   comp="arp",   bass="sub",     kit=None,    swing=.5),
+    "chiptune":   dict(bpm=118, scale="major",   root=60, prog=[0, 4, 5, 3], timbre="pulse",   comp="arp",   bass="tri",     kit="chip",  swing=.5),
+    "synthwave":  dict(bpm=100, scale="minor",   root=45, prog=[0, 5, 2, 6], timbre="saw",     comp="pad",   bass="eighths", kit="808",   swing=.5),
+    "ambient":    dict(bpm=66,  scale="lydian",  root=52, prog=[0, 4, 1, 4], timbre="pad",     comp="pad",   bass=None,      kit=None,    swing=.5),
+    "marimba":    dict(bpm=104, scale="mixolydian", root=55, prog=[0, 6, 3, 4], timbre="marimba", comp="arp", bass="sub",   kit="light", swing=.5),
+    "cinematic":  dict(bpm=72,  scale="harmonic_minor", root=45, prog=[0, 5, 3, 4], timbre="saw", comp="pad", bass="drone",  kit="taiko", swing=.5),
+    "jazzy":      dict(bpm=110, scale="dorian",  root=48, prog=[1, 4, 0, 5], timbre="epiano",  comp="stabs", bass="walk",    kit="brush", swing=.64),
+    "dark_pulse": dict(bpm=124, scale="phrygian", root=45, prog=[0, 1, 0, 6], timbre="saw",    comp="pad",   bass="eighths", kit="808",   swing=.5),
+}
 class Mix:
-    def __init__(self, dur):
+    def __init__(self, dur, mood=None, scale=None, bpm=None, timbre=None, root=None):
+        """mood/scale/bpm/timbre/root only feed Mix.bed(); Mix(dur) alone behaves exactly as before."""
         self.n = int(dur * SR); self.L = np.zeros(self.n, np.float32); self.R = np.zeros(self.n, np.float32)
+        p = dict(MOODS.get(mood or "lofi", MOODS["lofi"]))
+        for k_, v_ in (("scale", scale), ("bpm", bpm), ("timbre", timbre), ("root", root)):
+            if v_ is not None: p[k_] = v_
+        self.mood, self.p = mood, p
+    def chord_notes(self, degree, size=4, octave=0):
+        sc = SCALES[self.p["scale"]]; r = self.p["root"] + 12 * octave
+        return [r + sc[(degree + 2 * k) % len(sc)] + 12 * ((degree + 2 * k) // len(sc)) for k in range(size)]
+    def scale_note(self, i, octave=1):
+        sc = SCALES[self.p["scale"]]; return self.p["root"] + 12 * octave + sc[i % len(sc)] + 12 * (i // len(sc))
+    def _voice(self, name, m, dur):
+        f = float(midi_hz(m))
+        if name == "epiano": return epiano(f, dur)
+        if name == "piano": return piano(f, dur)
+        if name == "pulse": return pulse(f, dur)
+        if name == "saw": return saw(f, dur, attack=.02, decay=2.0, detune=.004)
+        if name == "marimba": return marimba(f, dur)
+        if name == "pluck": return pluck(f, dur)
+        if name == "bell": return bell(f, dur)
+        return kalimba(f, dur)
+    def bed(self, t0, t1, gain=.3, seed=0, intensity=None, drums_off=(), bars_per_chord=1):
+        """Original backing track from t0 to t1 in self.p's mood. intensity(t) -> 0..1 thickens the drums/arp;
+        drums_off = [(a, b), ...] video-time windows with drums muted (e.g. a slow-mo breath)."""
+        p = self.p; beat = 60.0 / p["bpm"]; bar = 4 * beat; rng = np.random.default_rng(seed)
+        inten = intensity or (lambda t: .5); hz = lambda m: float(midi_hz(m))
+        quiet = lambda t: any(a <= t < b for a, b in drums_off)
+        sw = lambda k8: (2 * p["swing"] - 1) * beat * .5 if k8 % 2 else 0.0    # swing offset for odd 8ths
+        if p.get("extra") == "vinyl": self.add(t0, vinyl(t1 - t0, seed + 3), gain * .5)
+        nb = int(math.ceil((t1 - t0) / bar))
+        for b_ in range(nb):
+            tb = t0 + b_ * bar; deg = p["prog"][(b_ // bars_per_chord) % len(p["prog"])]
+            ch = self.chord_notes(deg, 4, 1); I = float(inten(tb))
+            if tb >= t1: break
+            # comping
+            if p["comp"] == "stabs":
+                for off in ((0.0, beat * 1.5 + sw(3)) if b_ % 2 == 0 else (beat * .5 + sw(1), beat * 2.5 + sw(5))):
+                    for j, m in enumerate(ch): self.add(tb + off + j * .012, self._voice(p["timbre"], m, 1.4), gain * .32, (j - 1.5) * .25)
+            elif p["comp"] == "arp":
+                notes = ch + [ch[1] + 12, ch[2] + 12]; step = beat / (4 if I > .6 else 2)
+                for k in range(int(bar / step)):
+                    m = notes[(k * 3 + b_) % len(notes)] if p["timbre"] != "pulse" else notes[k % len(notes)]
+                    self.add(tb + k * step + (sw(k) if step == beat / 2 else 0), self._voice(p["timbre"], m, .5), gain * .3, ((k % 4) - 1.5) * .2)
+            else:
+                self.add(tb, pad([hz(m) for m in ch], bar + .4, attack=.5 if p["comp"] == "pad" else 1.2), gain * .55)
+            # bass
+            r = self.chord_notes(deg, 1, 0)[0] - 12 if p["root"] >= 48 else self.chord_notes(deg, 1, 0)[0]
+            if p["bass"] == "sub":
+                self.add(tb, sub(hz(r), beat * 1.8), gain * .55); self.add(tb + beat * 2.5 + sw(5), sub(hz(r), beat * 1.2), gain * .4)
+            elif p["bass"] == "tri":
+                for k in range(8): self.add(tb + k * beat / 2, triangle(hz(r + (12 if k % 2 else 0)), beat * .45), gain * .45)
+            elif p["bass"] == "eighths":
+                for k in range(8): self.add(tb + k * beat / 2, saw(hz(r), beat * .45, harm=8, decay=6), gain * .5)
+            elif p["bass"] == "walk":
+                sc_ = [r, r + 2, r + 3, r + 5, r + 7, r + 9, r + 10, r + 12]
+                for k in range(4): self.add(tb + k * beat, pluck(hz(sc_[int(rng.integers(0, len(sc_)))] if k else r), beat * .95), gain * .55)
+            elif p["bass"] == "drone":
+                self.add(tb, pad([hz(r), hz(r + 7)], bar + .3, attack=.8, harm=4), gain * .6)
+            # drums
+            kit = p["kit"]
+            if not kit: continue
+            for k8 in range(8):
+                t = tb + k8 * beat / 2 + sw(k8)
+                if t >= t1 or quiet(t): continue
+                if kit in ("lofi", "brush", "light"):
+                    if k8 in (0, 5) or (k8 == 3 and I > .7): self.add(t, thump(.3, 120, 44), gain * (.7 if kit == "lofi" else .4))
+                    if k8 in (2, 6): self.add(t, snare(.16, k8 + b_) if kit == "lofi" else brush(.2, k8 + b_) if kit == "brush" else rim(), gain * .45)
+                    self.add(t, hat(.04, b_ * 8 + k8), gain * (.32 if k8 % 2 == 0 else .2))
+                    if I > .75: self.add(t + beat / 4, hat(.03, b_ * 9 + k8 + 99), gain * .14)
+                elif kit == "chip":
+                    if k8 in (0, 4): self.add(t, thump(.18, 160, 50), gain * .6)
+                    if k8 in (2, 6): self.add(t, snare(.1, k8), gain * .4)
+                    self.add(t, hat(.03, k8), gain * .2)
+                elif kit == "808":
+                    if k8 in (0, 3, 4) or (I > .7 and k8 == 7): self.add(t, thump(.5, 110, 38), gain * .75)
+                    if k8 in (2, 6): self.add(t, snare(.22, k8 + b_, 200), gain * .45)
+                    self.add(t, hat(.035, k8 + b_), gain * .22)
+                    if I > .6: self.add(t + beat / 4, hat(.03, k8 + b_ + 50), gain * .15)
+                elif kit == "taiko":
+                    if k8 in (0, 3, 6): self.add(t, thump(.6, 90, 34), gain * .8)
+
     def add(self, t, sig, gain=1.0, pan=0.0):
         i = int(round(t * SR))
         if i < 0 or i >= self.n: return

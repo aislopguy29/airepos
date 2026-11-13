@@ -1,0 +1,57 @@
+{
+ "id": "2026-11-13_3",
+ "date": "2026-11-13",
+ "slot": 3,
+ "kind": "new",
+ "style_id": "maze_rush",
+ "format": "maze solver race: 17x17 maze carves itself from a glowing core, 8 flag explorers search from the rim at equal speed, live route/dead-end trails, vertical closeness meters, slow-mo zoom finish, gold winning-route trace",
+ "topic": "8 country flags",
+ "episode": 1,
+ "seed": 1,
+ "sim_seed": 66,
+ "music_style": "lo-fi chill: swung 86 bpm beat, soft FM e-piano stabs, sub bass, vinyl crackle, D dorian; drums drop out for the slow-mo finish",
+ "caption_style": "question-first",
+ "video": "lab/2026-11-13/3.mp4",
+ "duration": 23.78,
+ "thumb_offset_ms": 2400,
+ "caption": "Could you find the core faster than 8 flags?\n\nMaze Rush \u00b7 Run #1: the maze carves itself out from a glowing core, then every flag searches at the exact same speed. Bright trail = the route it's on. Faded trail = a dead end it had to back out of.\n\nWhich start would you have picked? \ud83d\udc47\n\n#maze #mazesolver #oddlysatisfying #flags #generativeart",
+ "comment": "Run #2 idea: bigger maze, or should one flag get a head start? Which flag deserves the rematch?",
+ "youtube": {
+  "title": "8 Flags Race Through a Self-Carving Maze to the Core | Maze Rush #1",
+  "description": "A maze grows out of a glowing core, then 8 flags start on the rim and hunt for the way in, all at the same speed. Bright lines are live routes, faded lines are dead ends they backed out of. The finish comes down to a couple of steps.\n\nWhich start would you have picked? \ud83d\udc47\n\n#shorts #maze #mazesolver #flags #oddlysatisfying #simulation",
+  "tags": [
+   "maze",
+   "maze solver",
+   "maze race",
+   "flags",
+   "satisfying",
+   "simulation"
+  ]
+ },
+ "result": {
+  "winner": "INDIA",
+  "ranking": [
+   "INDIA",
+   "KOREA",
+   "MEXICO",
+   "GERMANY",
+   "IRELAND",
+   "GREECE",
+   "AUSTRALIA",
+   "EGYPT"
+  ],
+  "countries": [
+   "KOREA",
+   "MEXICO",
+   "GREECE",
+   "EGYPT",
+   "AUSTRALIA",
+   "INDIA",
+   "GERMANY",
+   "IRELAND"
+  ],
+  "winner_steps": 86,
+  "winner_dead_ends": 9,
+  "runner_up_steps_short": 2
+ }
+}
