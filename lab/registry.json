@@ -9,5 +9,16 @@
   "topic": "8 country flags",
   "episode": 1,
   "video": "lab/2026-11-13/1.mp4"
+ },
+ {
+  "id": "2026-11-13_2",
+  "date": "2026-11-13",
+  "slot": 2,
+  "kind": "new",
+  "style_id": "sumo_island",
+  "format": "top-down battle royale: 8 flag balls ram each other on a hex island that crumbles into lava, roster X-outs, ALIVE/ISLAND % meter, slow-mo final clash",
+  "topic": "8 country flags",
+  "episode": 1,
+  "video": "lab/2026-11-13/2.mp4"
  }
 ]

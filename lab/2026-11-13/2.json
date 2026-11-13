@@ -1,0 +1,38 @@
+{
+ "id": "2026-11-13_2",
+ "date": "2026-11-13",
+ "slot": 2,
+ "kind": "new",
+ "style_id": "sumo_island",
+ "format": "top-down battle royale: 8 flag balls ram each other on a hex island that crumbles into lava, roster X-outs, ALIVE/ISLAND % meter, slow-mo final clash",
+ "topic": "8 country flags",
+ "episode": 1,
+ "seed": 46,
+ "video": "lab/2026-11-13/2.mp4",
+ "duration": 25.42,
+ "thumb_offset_ms": 1400,
+ "caption": "8 flags. 1 crumbling island. Last one standing wins. Sumo Island \u00b7 Round #1\n\nEvery flag keeps ramming its rivals while the floor drops into the lava, tile by tile. Pure physics and chance, no data.\n\nWhich flag did you pick before the first tile fell? \ud83d\udc47\n\n#lastonestanding #flags #countryballs #battleroyale #physics #simulation",
+ "comment": "Round #2 is coming. Which flag deserves a rematch, and who should join the island next?",
+ "result": {
+  "winner": "POLAND",
+  "knockout_order": [
+   "FINLAND",
+   "NORWAY",
+   "UKRAINE",
+   "KENYA",
+   "JAMAICA",
+   "NIGERIA",
+   "GHANA"
+  ],
+  "countries": [
+   "FINLAND",
+   "UKRAINE",
+   "NIGERIA",
+   "JAMAICA",
+   "GHANA",
+   "KENYA",
+   "POLAND",
+   "NORWAY"
+  ]
+ }
+}
