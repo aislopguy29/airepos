@@ -1,0 +1,10 @@
+{
+ "topic": "U.S. life expectancy at birth, 1900-2018",
+ "style": "A (mid/Midnight) line draw with counter",
+ "caption": "A U.S. newborn in 1900 could expect to live 47.3 years. By 2018 that figure was 78.7, a gain of 31.4 years.\n\nThe series dipped to 39.1 in 1918 and peaked at 78.9 in 2014. Both sexes, all races; the dataset ends in 2018, and the trend depends on the years chosen.\n\nSource: CDC / National Center for Health Statistics, \"NCHS - Death rates and life expectancy at birth\" (data.cdc.gov, w9j2-ggv5).\n\nWhat do you think matters most behind a long-run change like this?\n\n#lifeexpectancy #publichealth #cdc #history #thatdatalover",
+ "thumb_offset_ms": 1000,
+ "sources": [
+  "https://data.cdc.gov/d/w9j2-ggv5",
+  "https://www.cdc.gov/nchs/data-visualization/mortality-trends/index.htm"
+ ]
+}
