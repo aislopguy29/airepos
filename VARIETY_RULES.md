@@ -17,3 +17,10 @@ Goal: every post looks, sounds and reads different, so nothing is flagged as rep
 - Caption text similarity under 50% (difflib.SequenceMatcher) vs each of the last 20 captions; rewrite if higher.
 - No engagement bait (no "like/follow/comment to win", no "tag a friend"), no links in captions, no spammy/irrelevant/banned hashtags, no other platforms' watermarks or logos.
 - Replies to comments: never the same wording twice. One post per slot per day.
+
+## Subject variety: entrants do NOT have to be countries or states
+- For every NEW lab type, YouTube LAB short and encore, pick the contestants/theme creatively and rotate it; do not use countries/states/flags two posts in a row, and avoid them unless the type needs them. Check the last 10 posts' `theme` in lab/*/*.json first.
+- Theme ideas: animals (duck vs penguin vs sloth), foods (pizza vs taco vs sushi), planets and moons, fruits, colors/paint blobs, emoji faces, fantasy creatures (dragons, slimes, robots), vehicles, sports balls, musical instruments, weather, candy, board-game pieces, dinosaurs, dice/cards, pixel heroes, shapes with personalities, mythical gods, ocean creatures, fonts, letters/numbers, cartoon-style original mascots.
+- Original/generic characters only (no trademarked characters, logos, brands or real people). No real-world statistics.
+- Mix up the framing too: tournament bracket, survival, race, tug of war, sorting, maze, territory grab, rhythm, satisfying fill. Record `theme` in the post json.
+- State Elimination, Crown Race and Country Clash keep their fixed premise; Country Clash ends after day 7.
