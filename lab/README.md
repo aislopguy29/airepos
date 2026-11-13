@@ -1,25 +1,29 @@
-# eas.ydata LAB: new video types every day
+# LAB: new video types every day (eas.ydata Instagram + YouTube Shorts)
 
-Daily plan for Instagram **eas.ydata** (7 posts/day, times ET):
+**Instagram eas.ydata, 7 posts/day (ET):**
 
 | Time | Post | Made by |
 |---|---|---|
-| ~10:30 am | **LAB 1**: brand-new video type (also posted as the day's **YouTube Short**) | lab task, slot 1 |
+| ~10:30 am | **LAB 1**: brand-new type (also YouTube) | lab task, slot 1 |
 | 12:21 pm | State Elimination | series task (daily.py a) |
-| ~2:30 pm | **LAB 2**: brand-new video type | lab task, slot 2 |
+| ~2:30 pm | **LAB 2**: brand-new type (also YouTube when the gate is on) | lab task, slot 2 |
 | 3:43 pm | Country Clash (until day 7) | series task (daily_clash.py) |
-| ~5:45 pm | **LAB 3**: brand-new video type | lab task, slot 3 |
+| ~5:45 pm | **LAB 3**: brand-new type (also YouTube when the gate is on) | lab task, slot 3 |
 | 7:17 pm | Crown Race | series task (daily.py b) |
-| ~9:15 pm | **ENCORE**: new episode of the best lab type so far (2 encores once Country Clash is over) | lab task, slot e |
+| ~9:15 pm | **ENCORE**: new episode of the best lab type (2 encores once Country Clash is over) | lab task, slot e |
 
-YouTube gets exactly 1 Short a day (LAB 1) through Metricool (brand 8071801). The free Metricool plan publishes 20 posts a month.
+**YouTube Shorts: every Short is a brand-new type.** Target 10/day = LAB 1-3 + seven YouTube-only lab tasks (slots y1-y7,
+built ~45 min before: y1 ~7:30 am, y2 ~9:00, y3 ~11:50, y4 ~1:30 pm, y5 ~4:00, y6 ~7:10, y7 ~8:50).
+The gate is `lab/youtube.json`: while `extra_types_enabled` is false (Metricool free plan = 20 posts/month), only LAB 1 goes to
+YouTube and the y-tasks stop right away. Flip it to true once Metricool is on a paid plan.
 
 ## Files
 - `lab/styles/<style_id>.py`: one file per video type. `build(out_mp4, seed, race_no/ep, log, stills=None)` returns a dict
   with `duration`, `title`, `description`, `tags` (+ result fields). CLI: `python3 -I lab/styles/<id>.py <out.mp4> <seed> [episode]`.
-- `lab/<date>/<slot>.mp4` + `.json`: slot is 1, 2, 3, e (e2 for a second encore). The json holds caption, comment, thumb_offset_ms,
+- `lab/<date>/<slot>.mp4` + `.json`: slot is 1, 2, 3, e (e2 for a second encore), y1-y7 (YouTube-only). The json holds caption, comment, thumb_offset_ms,
   youtube{title,description,tags} (slot 1), and later `media_id` (Instagram) and `youtube_post` (Metricool id/uuid).
-- `lab/registry.json`: every lab post ever made. `python3 -I lab/lablib.py styles` lists them; `python3 -I lab/lablib.py check <mp4>` is the ffprobe gate.
+- Registry = every `lab/<date>/<slot>.json` (no shared file, so parallel runs never conflict). `python3 -I lab/lablib.py styles` lists all types made;
+  `python3 -I lab/lablib.py check <mp4>` is the ffprobe gate; `shrink <mp4>` re-encodes lighter. (`lab/registry.json` is a frozen legacy list.)
 - Reference implementation: `lab/styles/flag_drop.py` (marble race). Copy its structure, not its look.
 
 ## What counts as a NEW type
@@ -32,7 +36,8 @@ pendulum wave, rhythm bounce that plays a melody, cellular-automata color war, s
 explosion. Countries/flags and US states fit the brand (country battles do well), but mechanics should vary.
 
 ## House rules (every lab video)
-- 1080x1920, exactly 60 fps, H.264 + AAC via `engine.py` (`E.render`, `E.Mix`), 15–35 s, under 100 MB. Must pass `lablib.py check`.
+- 1080x1920, exactly 60 fps, H.264 + AAC via `engine.py` (`E.render`, `E.Mix`), 15–35 s, **at most 15 MB** (an 18 MB file failed
+  Instagram ingest once; run `lablib.py shrink`). Must pass `lablib.py check`.
 - Hook in the first second: big text stating the stakes ("8 FLAGS · 1 DROP · FIRST TO THE BOTTOM WINS"), then a "pick one" prompt.
   Rising tension, a slow-mo or highlighted climax, a payoff card that asks a comment question, and a 0.35 s loop blend back to frame 0.
 - Text inside x 60–1020, y 240–1680 (centre safe zone), stroked and readable on a phone. Dark band behind HUDs; no overlaps.
