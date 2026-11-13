@@ -1,0 +1,36 @@
+{
+ "id": "2026-11-13_1",
+ "date": "2026-11-13",
+ "slot": 1,
+ "kind": "new",
+ "style_id": "flag_drop",
+ "format": "marble race down a tall peg/ramp/bumper course, camera follows leader, live order strip, photo finish, podium",
+ "topic": "8 country flags",
+ "episode": 1,
+ "seed": 1,
+ "video": "lab/2026-11-13/1.mp4",
+ "duration": 25.74,
+ "thumb_offset_ms": 2100,
+ "caption": "8 flags. 1 drop. First to the bottom wins. Flag Drop \u00b7 Race #1\n\nPegs, ramps, bumpers and one tight funnel. Pure physics and chance, no data.\n\nWhich flag did you pick before the gate opened? \ud83d\udc47\n\n#marblerace #flags #countryballs #satisfying #physics #simulation",
+ "comment": "Race #2 drops later. Which flag should get a rematch?",
+ "youtube": {
+  "title": "8 Flags Drop, Only 1 Wins | Flag Drop Race #1",
+  "description": "8 flag marbles drop through pegs, ramps and bumpers. First to the bottom wins. Pure physics and chance.\n\nWhich flag did you pick? \ud83d\udc47\n\n#shorts #marblerace #flags #satisfying #physics #simulation",
+  "tags": [
+   "marble race",
+   "flags",
+   "countries",
+   "physics",
+   "satisfying",
+   "simulation"
+  ]
+ },
+ "result": {
+  "winner": "CANADA",
+  "podium": [
+   "CANADA",
+   "KOREA",
+   "USA"
+  ]
+ }
+}
