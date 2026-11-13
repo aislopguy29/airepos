@@ -24,3 +24,11 @@ Goal: every post looks, sounds and reads different, so nothing is flagged as rep
 - Original/generic characters only (no trademarked characters, logos, brands or real people). No real-world statistics.
 - Mix up the framing too: tournament bracket, survival, race, tug of war, sorting, maze, territory grab, rhythm, satisfying fill. Record `theme` in the post json.
 - State Elimination, Crown Race and Country Clash keep their fixed premise; Country Clash ends after day 7.
+
+## Viral-only themes (overrides the open theme list above)
+Only pick a theme with a real reason to expect strong reach. Choose it this way, in order:
+1. Trend evidence: read the Project doc aislop/research/latest.md (weekly trend learning) and use the hooks/formats/themes it lists as winning right now.
+2. Own results: Windsor get_data (instagram, eas.ydata account, last_30dT: media_views, likes, comments, shares/saves if available) -> rank past posts by (views + 20*likes + 50*comments) per hour; reuse the winning `theme` families (and drop the ones that flopped; two flops in a row = retire that theme for 30 days).
+3. Proven evergreen viral categories as the fallback: cute/funny animals, food showdowns (pizza vs burgers etc.), "which one would you pick" matchups, nostalgic items (retro games, snacks, toys, cartoons-in-spirit), satisfying fills/sorting/ASMR-style loops, underdog-vs-giant, "last survivor" with relatable characters, rhythm/melody loops, size/scale comparisons, glow-ups.
+Each post must carry: a relatable theme anyone gets in under 1 second, a hook in the first 1.5 s (clear stakes or question on screen), an obvious favorite/underdog to root for, a payoff or twist in the last third, a comment-driving question (pick your side) without begging for engagement, and a loop-friendly ending. Skip niche, abstract or confusing themes.
+Record `theme` and `viral_reason` (which rule above chose it) in the post json. Nobody can guarantee virality; the rotation just keeps betting on what the data shows works.
