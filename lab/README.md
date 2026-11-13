@@ -12,15 +12,15 @@
 | 7:17 pm | Crown Race | series task (daily.py b) |
 | ~9:15 pm | **ENCORE**: new episode of the best lab type (2 encores once Country Clash is over) | lab task, slot e |
 
-**YouTube Shorts: every Short is a brand-new type.** Target 10/day = LAB 1-3 + seven YouTube-only lab tasks (slots y1-y7,
-built ~45 min before: y1 ~7:30 am, y2 ~9:00, y3 ~11:50, y4 ~1:30 pm, y5 ~4:00, y6 ~7:10, y7 ~8:50).
-The gate is `lab/youtube.json`: while `extra_types_enabled` is false (Metricool free plan = 20 posts/month), only LAB 1 goes to
-YouTube and the y-tasks stop right away. Flip it to true once Metricool is on a paid plan.
+**YouTube Shorts: 5 a day, every one a brand-new type** (since 2026-11-13): LAB 1, LAB 2, LAB 3 (~10:40 am, ~2:40 pm, ~5:50 pm)
+plus 2 YouTube-only builds from the "YouTube LAB" task (slots y1, y2; runs 12:13 pm and 7:13 pm → live ~1:00 pm and ~8:00 pm).
+Controlled by `lab/youtube.json`: `extra_types_enabled` (LAB 2/3 to YouTube + y-slots on/off) and `y_slots_per_day`.
+Metricool's free plan publishes only 20 posts a month; past that, scheduled posts don't publish until the 1st.
 
 ## Files
 - `lab/styles/<style_id>.py`: one file per video type. `build(out_mp4, seed, race_no/ep, log, stills=None)` returns a dict
   with `duration`, `title`, `description`, `tags` (+ result fields). CLI: `python3 -I lab/styles/<id>.py <out.mp4> <seed> [episode]`.
-- `lab/<date>/<slot>.mp4` + `.json`: slot is 1, 2, 3, e (e2 for a second encore), y1-y7 (YouTube-only). The json holds caption, comment, thumb_offset_ms,
+- `lab/<date>/<slot>.mp4` + `.json`: slot is 1, 2, 3, e (e2 for a second encore), y1..yN (YouTube-only). The json holds caption, comment, thumb_offset_ms,
   youtube{title,description,tags} (slot 1), and later `media_id` (Instagram) and `youtube_post` (Metricool id/uuid).
 - Registry = every `lab/<date>/<slot>.json` (no shared file, so parallel runs never conflict). `python3 -I lab/lablib.py styles` lists all types made;
   `python3 -I lab/lablib.py check <mp4>` is the ffprobe gate; `shrink <mp4>` re-encodes lighter. (`lab/registry.json` is a frozen legacy list.)

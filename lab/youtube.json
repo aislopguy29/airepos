@@ -1,5 +1,6 @@
 {
- "extra_types_enabled": false,
- "metricool_plan": "free",
- "note": "Switch for 10 YouTube Shorts a day, all new types. Set extra_types_enabled to true only once Metricool is on a paid plan (the free plan publishes just 20 posts a month). When true: LAB 2 and LAB 3 also post to YouTube, and the 7 YouTube-only lab tasks (slots y1-y7) build and post. When false: only LAB 1 posts to YouTube (1 a day)."
+ "extra_types_enabled": true,
+ "y_slots_per_day": 2,
+ "metricool_plan": "free (user chose to start anyway on 2026-11-13)",
+ "note": "YouTube = 5 Shorts a day, every one a new type: LAB 1 (always), LAB 2 and LAB 3 (while extra_types_enabled is true), plus y_slots_per_day YouTube-only builds (slots y1..yN) from the 'YouTube LAB' task. Set extra_types_enabled false to drop back to 1 a day (LAB 1 only). Metricool's free plan publishes only 20 posts a month; posts past that won't publish."
 }
