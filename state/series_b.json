@@ -3,6 +3,8 @@
  "series": "CROWN RACE",
  "mode": "crown",
  "season": 1,
- "episode": 1,
- "removed": []
+ "episode": 2,
+ "removed": [
+  "RI"
+ ]
 }
