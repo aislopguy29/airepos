@@ -52,7 +52,7 @@ function grid(rd,t,phase,idx){
  g.translate(-540,-985);
  for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
   const k=j*cols+i,x=x0+cell*(i+.5),y=y0+cell*(j+.5),isO=(i===odd[0]&&j===odd[1]);
-  const p=pop(cl(t,.01*k,.01*k+.26));if(p<=0)continue;
+  const p=phase?1:pop(cl(t,.01*k,.01*k+.26));if(p<=0)continue;
   g.save();g.globalAlpha=phase&&!isO?.22:1;
   g.translate(0,Math.sin(t*5.5+k)*6*(phase?0:1));
   face(x,y,r*p*(phase&&isO?1.15:1),isO?rd.diff:null,col,t,k,!phase);g.restore()}
@@ -75,16 +75,23 @@ function frame(t){
  g.fillStyle=gr;g.fillRect(0,0,1080,1920);
  const tt=t-INTRO,idx=Math.floor(tt/(SEARCH+REVEAL)),lt=tt-idx*(SEARCH+REVEAL),outro=idx>=R;
  const phase=!outro&&t>=INTRO&&lt>SEARCH, pt=phase?lt-SEARCH:lt;
- rays(t,540,980,14,phase?'rgba(255,194,51,.26)':'rgba(255,111,165,.09)',1);
+ const tense=(!outro&&t>=INTRO&&!phase)?cl(lt,SEARCH*.35,SEARCH):0;
+ rays(t*(1+tense*2.6),540,980,14,phase?'rgba(255,194,51,.28)':`rgba(255,111,165,${.09+tense*.14})`,1);
  for(let i=0;i<30;i++){const x=rnd(i)*1080,y=(rnd(i+5)*1920+t*55)%2050;g.save();g.translate(x,y);g.rotate(t*1.3+i);
   g.globalAlpha=.3;i%2?star(0,0,15,ACC[i%6],0):(g.fillStyle=ACC[(i+3)%6],g.fillRect(-11,-11,22,22));g.restore()}
+ if(tense>0){const vg=g.createRadialGradient(540,980,520-260*tense,540,980,1150-320*tense);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,`rgba(255,111,165,${.10+.34*tense})`);
+  g.fillStyle=vg;g.fillRect(0,0,1080,1920);
+  if(tense>.72){g.fillStyle=`rgba(255,111,165,${.10*Math.abs(Math.sin(t*16))})`;g.fillRect(0,0,1080,1920)}}
  g.save();
+ if(!outro&&t>=INTRO&&!phase&&tense>.55){const a=5*tense;g.translate((rnd(t*131)-.5)*a,(rnd(t*77)-.5)*a)}
  if(phase&&pt<.22){const a=16*(1-pt/.22);g.translate((rnd(t*97)-.5)*a,(rnd(t*59)-.5)*a)}
  g.textAlign='center';g.textBaseline='middle';
  if(t<INTRO){const p=pop(cl(t,.05,.7));g.save();g.translate(540,880);g.scale(p,p);g.rotate(jig(t,0,.012));
   outText(S.title,0,-80,118,P.sun,P.ink,null,940);outText(S.title2||'IN 3 SECONDS',0,55,104,P.pink,P.ink,null,940);g.restore();
   chip(540,1130,S.sub,P.grape,48,jig(t,2,.02));
   g.save();g.globalAlpha=cl(t,.5,.9);chip(540,1290,'99% FAIL ROUND '+R,P.coral,42,-.05,1+.05*Math.sin(t*9));g.restore();
+  g.save();g.globalAlpha=cl(t,1.0,1.5);chip(540,1430,'DO NOT SCROLL',P.ink,40,.03,1+.06*Math.sin(t*13));g.restore();
   star(170,640,70,P.mint,t*1.6);star(910,700,56,P.sky,-t*1.3);star(240,1430,48,P.pink,t);}
  else if(!outro){const rd=S.rounds[idx];
   if(!phase){const hp=pop(cl(lt,0,.3));
@@ -92,10 +99,14 @@ function frame(t){
    g.save();g.translate(540,480);g.scale(hp,hp);outText(rd.prompt,0,0,56,'#fff',P.ink,16,960);g.restore();}
   grid(rd,pt,phase?1:0,idx);
   if(!phase){bar(lt/SEARCH);
-   if(lt>SEARCH*.55){g.save();g.globalAlpha=cl(lt,SEARCH*.55,SEARCH*.8);chip(850,560,'HURRY!',P.coral,42,.22,1+.08*Math.sin(t*14));g.restore()}}
+   if(lt>SEARCH*.5){g.save();g.globalAlpha=cl(lt,SEARCH*.5,SEARCH*.72);
+     chip(846,566,lt>SEARCH*.8?'LAST SEC!':'HURRY!',P.coral,42,.22,1+.11*Math.sin(t*16));g.restore()}
+   if(idx===R-1){g.save();g.globalAlpha=cl(lt,.1,.5);chip(240,566,'FINAL!',P.grape,40,-.2,1+.08*Math.sin(t*12));g.restore()}}
   else{const p=pop(cl(pt,.08,.45));g.save();g.translate(540,1470);g.scale(p,p);g.rotate(jig(t,3,.03));
    outText(idx<R-1?'FOUND IT!':'LAST ONE!',0,0,102,P.mint,P.ink,24);g.restore();
    chip(880,600,'+1',P.mint,58,.3,1+.1*Math.sin(t*16));
+   if(idx<R-1){g.save();g.globalAlpha=cl(pt,.55,1.0);
+    chip(540,1620,(idx===R-2?'NEXT ONE IS BRUTAL':'ROUND '+(idx+2)+' IS HARDER'),P.ink,38,jig(t,7,.02));g.restore()}
    if(pt<.14){g.fillStyle='rgba(255,255,255,'+(1-pt/.14)*.75+')';g.fillRect(0,0,1080,1920)}}
   for(let i=0;i<R;i++){const done=i<idx||(i===idx&&phase),x=540+(i-(R-1)/2)*86;
    g.beginPath();g.arc(x,1650,30,0,7);g.fillStyle=done?P.mint:'#fff';g.fill();g.lineWidth=6;g.strokeStyle=P.ink;g.stroke();
@@ -108,7 +119,8 @@ function frame(t){
    g.beginPath();g.arc(0,0,60,0,7);g.fillStyle=ACC[i%6];g.fill();g.lineWidth=7;g.strokeStyle=P.ink;g.stroke();
    outText(i,0,2,58,'#fff',P.ink,12);g.restore()}g.restore();
   chip(540,1250,'COMMENT YOUR SCORE',P.ink,46,jig(t,5,.012));
-  g.save();g.globalAlpha=cl(ot,.7,1.2);chip(540,1400,'FOLLOW FOR DAILY PUZZLES',P.grape,38,.02,1+.04*Math.sin(t*8));g.restore();}
+  g.save();g.globalAlpha=cl(ot,.7,1.2);chip(540,1400,'FOLLOW FOR DAILY PUZZLES',P.grape,38,.02,1+.04*Math.sin(t*8));g.restore();
+  g.save();g.globalAlpha=cl(ot,1.3,1.8);chip(540,1530,'TOMORROW: 5 ROUNDS',P.coral,36,-.02,1+.05*Math.sin(t*11));g.restore();}
  g.restore();
  g.save();g.globalAlpha=.95;chip(540,1790,S.footer,P.sky,34,0);g.restore();
  const fo=cl(t,window.DUR-.4,window.DUR);if(fo>0){g.fillStyle=`rgba(253,246,233,${fo})`;g.fillRect(0,0,1080,1920)}
