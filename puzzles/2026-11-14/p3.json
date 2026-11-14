@@ -1,0 +1,68 @@
+{
+ "slot": "p3",
+ "title": "FIND THE ODD ONE",
+ "hook": "You get 2.9 seconds. Miss one and you lose.",
+ "hook_score": 88.0,
+ "hook_candidates": [
+  [
+   88.0,
+   "You get 2.9 seconds. Miss one and you lose."
+  ],
+  [
+   82.0,
+   "Most people quit before round 5."
+  ],
+  [
+   81.0,
+   "Only 1 in 10 people get all 5 of these."
+  ],
+  [
+   76.0,
+   "5 rounds, and almost nobody survives the last one."
+  ],
+  [
+   73.0,
+   "Your eyes have 2.9 seconds per round."
+  ]
+ ],
+ "humanized": {
+  "invisible": [],
+  "typographic": [],
+  "lexical": [],
+  "structures": [
+   {
+    "name": "Hashtag wall (5+)",
+    "count": 1,
+    "fix": "Three hashtags. LinkedIn stopped rewarding the wall."
+   },
+   {
+    "name": "Uniform sentence length (variation 0.23)",
+    "count": 6,
+    "fix": "Break one sentence in half. Let another run long. Machines write even."
+   }
+  ]
+ },
+ "caption_first_125": "You get 2.9 seconds. Miss one and you lose.\n\nFind The Odd One: 5 rounds, 2.9s each, harder every time.\n\nComment how many you ",
+ "shape": "circle",
+ "palette": "candy",
+ "diff_ids": [
+  "tilt",
+  "frown",
+  "c_size",
+  "extra",
+  "eye"
+ ],
+ "rounds": 5,
+ "search": 2.9,
+ "seed": 3396267751,
+ "caption": "You get 2.9 seconds. Miss one and you lose.\n\nFind The Odd One: 5 rounds, 2.9s each, harder every time.\n\nComment how many you spotted.\n\n#oddoneout #braingame #reactiontest #challenge #thatdatalover\n",
+ "caption_style": "hook+format+score CTA",
+ "music_style": "slop_brainrot",
+ "theme": "circle faces / candy",
+ "viral_reason": "timed spot-the-difference with retention hooks",
+ "thumb_offset_ms": 900,
+ "created": "2026-11-14",
+ "video": "puzzles/2026-11-14/p3.mp4",
+ "duration": 29.5,
+ "size_mb": 23.04
+}
