@@ -1,0 +1,26 @@
+{
+ "slot": "b",
+ "title": "ONLY 1% CAN SPOT IT",
+ "shape": "blob",
+ "palette": "mellow",
+ "diff_ids": [
+  "tilt",
+  "frown",
+  "wink",
+  "extra",
+  "eye"
+ ],
+ "rounds": 5,
+ "search": 3.1,
+ "seed": 99,
+ "caption": "Your eyes have 3.1 seconds per round.\n\nOnly 1% Can Spot It \u2014 5 rounds, 3.1s each, harder every time.\n\nTell me your score \u2014 be honest.\n\n#findtheodd #eyetest #puzzletime #brainrot #thatdatalover",
+ "caption_style": "hook+format+score CTA",
+ "music_style": "slop_brainrot",
+ "theme": "blob faces / mellow",
+ "viral_reason": "timed spot-the-difference with retention hooks",
+ "thumb_offset_ms": 900,
+ "created": "2026-11-14",
+ "video": "puzzles/2026-11-13/b.mp4",
+ "duration": 30.5,
+ "size_mb": 25.32
+}

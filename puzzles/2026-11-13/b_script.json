@@ -1,0 +1,80 @@
+{
+ "title": "ONLY 1% CAN SPOT IT",
+ "title2": "IN 3 SECONDS",
+ "shape": "blob",
+ "sub": "5 rounds \u00b7 harder each time",
+ "footer": "new puzzle every day",
+ "search": 3.1,
+ "rounds": [
+  {
+   "cols": 4,
+   "rows": 6,
+   "odd": [
+    2,
+    5
+   ],
+   "prompt": "ONE IS UPSIDE DOWN",
+   "diff": {
+    "tilt": true
+   },
+   "col": "#f49ac1",
+   "shape": "blob"
+  },
+  {
+   "cols": 5,
+   "rows": 7,
+   "odd": [
+    3,
+    4
+   ],
+   "prompt": "ONE IS NOT SMILING",
+   "diff": {
+    "frown": true
+   },
+   "col": "#7fd8bd",
+   "shape": "blob"
+  },
+  {
+   "cols": 6,
+   "rows": 8,
+   "odd": [
+    5,
+    1
+   ],
+   "prompt": "ONE IS WINKING",
+   "diff": {
+    "wink": true
+   },
+   "col": "#f6cf7a",
+   "shape": "blob"
+  },
+  {
+   "cols": 7,
+   "rows": 9,
+   "odd": [
+    4,
+    7
+   ],
+   "prompt": "ONE HAS A NOSE",
+   "diff": {
+    "extra": true
+   },
+   "col": "#8cc6f0",
+   "shape": "blob"
+  },
+  {
+   "cols": 8,
+   "rows": 10,
+   "odd": [
+    3,
+    6
+   ],
+   "prompt": "ONE HAS A TINY EYE",
+   "diff": {
+    "eye": true
+   },
+   "col": "#b3a4e8",
+   "shape": "blob"
+  }
+ ]
+}
