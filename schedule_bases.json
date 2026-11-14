@@ -1,0 +1,17 @@
+{
+ "note": "Base posting times (America/New_York). A daily task jitters each one by up to +/-10 minutes so posts never land at the same clock time two days running. Edit a base here to move a slot permanently.",
+ "jitter_minutes": 10,
+ "min_gap_minutes": 5,
+ "slots": [
+  {"trigger_id":"trig_01AkSwYE5VYbaRyfJH4uECfC","name":"LAB 1 new type","account":"eas.ydata","base":"09:47","hours":[9]},
+  {"trigger_id":"trig_01TkZB2hHnLF1C61TgA4pL1g","name":"thatdatalover puzzle a","account":"thatdatalover","base":"12:07","hours":[12]},
+  {"trigger_id":"trig_01QcqQbQpYo6MoLcDudm6DGc","name":"YouTube LAB shorts","account":"youtube","base":"12:13","hours":[12,19]},
+  {"trigger_id":"trig_01PpJGaeiqL3yfgin1CQHzjF","name":"State Elimination","account":"eas.ydata","base":"12:21","hours":[12]},
+  {"trigger_id":"trig_0129o5WB7eqB49bWq456PKUg","name":"LAB 2 new type","account":"eas.ydata","base":"13:53","hours":[13]},
+  {"trigger_id":"trig_01GBXZ37r6mWs3xX6MHgfhWu","name":"Country Clash","account":"eas.ydata","base":"15:43","hours":[15]},
+  {"trigger_id":"trig_01KVWrrsKnh1rUacKwdV9Way","name":"LAB 3 new type","account":"eas.ydata","base":"17:07","hours":[17]},
+  {"trigger_id":"trig_013ZYBSQ9C3rQV8KzbCX5w4T","name":"Crown Race","account":"eas.ydata","base":"19:17","hours":[19]},
+  {"trigger_id":"trig_016TF1HdHdoNrNTWeDRJwfAG","name":"thatdatalover puzzle b","account":"thatdatalover","base":"19:37","hours":[19]},
+  {"trigger_id":"trig_0145rcVLMc7SAE7YCccKc4Wu","name":"LAB encore","account":"eas.ydata","base":"20:41","hours":[20]}
+ ]
+}
