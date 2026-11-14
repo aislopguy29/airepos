@@ -1,0 +1,100 @@
+<!doctype html><html><body style="margin:0;background:#fdf6e9"><canvas id="c" width="1080" height="1350"></canvas>
+<script>
+const S=__SCRIPT__;
+const c=document.getElementById('c'),g=c.getContext('2d');
+const F='Inter, "DejaVu Sans", Arial, sans-serif';
+const P={paper:'#fdf6e9',paper2:'#ffeedd',ink:'#1f1710',pink:'#ff6fa5',mint:'#2fd9ab',sun:'#ffc233',sky:'#4fb6ff',grape:'#9b7bff',coral:'#ff7f4d'};
+const ACC=[P.pink,P.mint,P.sun,P.sky,P.grape,P.coral];
+const rnd=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
+function outText(txt,x,y,size,col,out,lw,maxw){g.font='bold '+size+'px '+F;
+ if(maxw){const w=g.measureText(txt).width;if(w>maxw){size=Math.floor(size*maxw/w);g.font='bold '+size+'px '+F;lw=lw?lw*maxw/w:size*.2}}
+ g.textAlign='center';g.textBaseline='middle';g.lineWidth=lw||size*.2;g.strokeStyle=out||P.ink;g.lineJoin='round';
+ g.strokeText(txt,x,y);g.fillStyle=col;g.fillText(txt,x,y)}
+function chip(x,y,txt,col,size,rot){g.save();g.translate(x,y);g.rotate(rot||0);
+ g.font='bold '+size+'px '+F;const w=g.measureText(txt).width+size*1.0,h=size*1.75;
+ g.beginPath();g.roundRect(-w/2+5,-h/2+7,w,h,h/2);g.fillStyle='rgba(31,23,16,.25)';g.fill();
+ g.beginPath();g.roundRect(-w/2,-h/2,w,h,h/2);g.fillStyle=col;g.fill();g.lineWidth=size*.16;g.strokeStyle=P.ink;g.stroke();
+ g.textAlign='center';g.textBaseline='middle';g.lineWidth=size*.16;g.strokeStyle=P.ink;
+ g.strokeText(txt,0,2);g.fillStyle='#fff';g.fillText(txt,0,2);g.restore()}
+function star(x,y,r,col,rot){g.save();g.translate(x,y);g.rotate(rot||0);g.beginPath();
+ for(let i=0;i<10;i++){const a=i*Math.PI/5,rr=i%2?r*.45:r;g.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}
+ g.closePath();g.fillStyle=col;g.fill();g.lineWidth=r*.22;g.strokeStyle=P.ink;g.stroke();g.restore()}
+function rays(cx,cy,alpha,col){g.save();g.globalAlpha=alpha;g.translate(cx,cy);g.rotate(.3);
+ for(let i=0;i<14;i++){g.rotate(Math.PI*2/14);g.beginPath();g.moveTo(0,0);g.lineTo(1500,-120);g.lineTo(1500,120);g.fillStyle=col;g.fill()}g.restore()}
+function shapePath(shape,r){g.beginPath();
+ if(shape==='square'){const s=r*.92;g.roundRect(-s,-s,s*2,s*2,r*.36)}
+ else if(shape==='star'){for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,rr=i%2?r*.5:r*1.12;g.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}g.closePath()}
+ else if(shape==='blob'){for(let i=0;i<=24;i++){const a=i/24*Math.PI*2,rr=r*(1+.1*Math.sin(a*3));g.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}g.closePath()}
+ else g.arc(0,0,r,0,7)}
+function face(x,y,r,o,col,shape){o=o||{};g.save();g.translate(x,y);
+ if(o.size)r*=.76; g.rotate((o.tilt?Math.PI:0)+(o.rot||0));
+ const base=o.col?o.col:col;
+ g.save();g.translate(0,r*.14);shapePath(shape,r);g.fillStyle='rgba(31,23,16,.2)';g.fill();g.restore();
+ shapePath(shape,r);g.fillStyle=base;g.fill();g.lineWidth=r*.15;g.strokeStyle=P.ink;g.stroke();
+ g.beginPath();g.arc(-r*.3,-r*.34,r*.2,0,7);g.fillStyle='rgba(255,255,255,.5)';g.fill();
+ g.fillStyle=P.ink;const er=r*.19,ex=r*.35,ey=-r*.16;
+ if(o.wink){g.lineWidth=r*.12;g.strokeStyle=P.ink;g.lineCap='round';g.beginPath();g.moveTo(-ex-er,ey);g.lineTo(-ex+er,ey);g.stroke()}
+ else{g.beginPath();g.arc(-ex,ey,er,0,7);g.fill()}
+ g.beginPath();g.arc(ex,ey,o.eye?er*.38:er,0,7);g.fill();
+ if(o.extra){g.beginPath();g.arc(0,r*.02,r*.1,0,7);g.fillStyle=P.ink;g.fill()}
+ g.strokeStyle=P.ink;g.lineWidth=r*.16;g.lineCap='round';g.beginPath();
+ if(o.frown)g.arc(0,r*.6,r*.4,Math.PI*1.18,Math.PI*1.82);
+ else if(o.flat){g.moveTo(-r*.3,r*.34);g.lineTo(r*.3,r*.34)}
+ else g.arc(0,r*.12,r*.44,Math.PI*.16,Math.PI*.84);
+ g.stroke();g.restore()}
+function bg(){const gr=g.createLinearGradient(0,0,0,1350);gr.addColorStop(0,P.paper);gr.addColorStop(1,P.paper2);
+ g.fillStyle=gr;g.fillRect(0,0,1080,1350);
+ for(let i=0;i<22;i++){const x=rnd(i)*1080,y=rnd(i+5)*1350;g.save();g.translate(x,y);g.rotate(rnd(i+2)*6);
+  g.globalAlpha=.22;i%2?star(0,0,14,ACC[i%6]):(g.fillStyle=ACC[(i+3)%6],g.fillRect(-10,-10,20,20));g.restore()}}
+function drawGrid(rd,reveal,idx){
+ const{cols,rows,odd}=rd,col=rd.col||ACC[idx%6];
+ const mode=rd.mode||'odd',targets=rd.targets||[];
+ const top=400,bot=1120,pad=60;
+ const cell=Math.min((1080-pad*2)/cols,(bot-top)/rows), r=cell*.42;
+ const x0=(1080-cell*cols)/2, y0=top+((bot-top)-cell*rows)/2;
+ const isT=(i,j)=>mode==='count'?targets.some(q=>q[0]===i&&q[1]===j):(i===odd[0]&&j===odd[1]);
+ for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+  const x=x0+cell*(i+.5),y=y0+cell*(j+.5),t=isT(i,j);
+  g.save();if(reveal&&!t)g.globalAlpha=.3;
+  face(x,y,r,t?rd.diff:null,col,rd.shape||S.shape||'circle');g.restore();
+  if(reveal&&t){g.save();g.lineWidth=12;g.strokeStyle=P.ink;g.beginPath();g.arc(x,y,r*1.6,0,7);g.stroke();
+   g.lineWidth=7;g.strokeStyle=P.sun;g.stroke();g.restore()}}
+}
+function slide(n){
+ bg();
+ const puzzles=S.rounds;
+ if(n===0){ // cover
+  rays(540,700,.1,P.pink);
+  outText(S.title,540,250,120,P.sun,P.ink,null,900);
+  outText(S.title2||'CAN YOU FIND IT?',540,375,96,P.pink,P.ink,null,900);
+  chip(540,520,puzzles.length+' PUZZLES · SWIPE',P.grape,46,-.02);
+  chip(540,640,'99% MISS THE LAST ONE',P.ink,42,.02);
+  // teaser grid, fully inside the frame
+  const col=ACC[0];const cell=132,x0=540-cell*2,y0=790;
+  for(let j=0;j<3;j++)for(let i=0;i<4;i++){
+   const t=(i===2&&j===1);
+   face(x0+cell*(i+.5),y0+cell*(j+.5),cell*.4,t?puzzles[0].diff:null,col,S.shape||'circle');}
+  star(120,900,58,P.mint,.3);star(960,960,48,P.sky,-.4);
+ } else if(n<=puzzles.length){ // one puzzle per slide
+  const i=n-1,rd=puzzles[i];
+  chip(540,200,'PUZZLE '+(i+1)+' / '+puzzles.length,ACC[i%6],52,0);
+  outText(rd.prompt,540,310,56,'#fff',P.ink,16,960);
+  drawGrid(rd,false,i);
+  chip(540,1240,'COMMENT YOUR ANSWER',P.ink,44,0);
+ } else { // answers
+  rays(540,700,.12,P.sun);
+  outText('ANSWERS',540,230,110,P.mint,P.ink,null,900);
+  const n2=puzzles.length,colsN=n2>2?2:n2,rowsN=Math.ceil(n2/colsN);
+  const cw=1080/colsN, chh=790/rowsN, sc=Math.min(.38, .80/rowsN);
+  puzzles.forEach((rd,i)=>{
+   const cx=cw*(i%colsN)+cw/2, cy=375+chh*Math.floor(i/colsN)+chh/2+28;
+   g.save();g.translate(cx,cy);g.scale(sc,sc);g.translate(-540,-760);
+   drawGrid(rd,true,i);g.restore();
+   chip(cx,cy-chh/2-14,'#'+(i+1),ACC[i%6],32,0);});
+  chip(540,1270,'HOW MANY DID YOU GET?',P.ink,46,0);
+ }
+ return c.toDataURL('image/jpeg',.94).split(',')[1];
+}
+window.SLIDES=S.rounds.length+2;
+window.slide=slide;
+</script></body></html>

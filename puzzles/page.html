@@ -143,8 +143,7 @@ function frame(t){
   g.save();g.globalAlpha=cl(ot,.7,1.2);chip(540,1400,'FOLLOW FOR DAILY PUZZLES',P.grape,38,.02,1+.04*Math.sin(t*8));g.restore();
   g.save();g.globalAlpha=cl(ot,1.3,1.8);chip(540,1530,'TOMORROW: 5 ROUNDS',P.coral,36,-.02,1+.05*Math.sin(t*11));g.restore();}
  g.restore();
- g.save();g.globalAlpha=.95;chip(540,1766,S.footer,P.sky,34,0);g.restore();
- g.save();g.globalAlpha=.9;chip(540,1840,'follow + like for more',P.grape,26,0,1+.03*Math.sin(t*7));g.restore();
+
  const fo=cl(t,window.DUR-.4,window.DUR);if(fo>0){g.fillStyle=`rgba(253,246,233,${fo})`;g.fillRect(0,0,1080,1920)}
  return c.toDataURL('image/jpeg',.93).split(',')[1];
 }

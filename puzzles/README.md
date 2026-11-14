@@ -62,3 +62,18 @@ Patterns: `lr`, `ud`, `diag`, `circle`, `random`. Keep bpm between 60 and ~300; 
 moves faster than a saccade can land and the drill stops meaning anything.
 Each level gets a label beat (a ready dot plus countdown), then its jumps; a blip lands on every move.
 `render.js` picks the page with the `PAGE` env var, so both formats share one renderer.
+
+## Third format: Facebook/Instagram carousel
+`carousel.html` + `carousel.js`. Turns any puzzle script into swipeable 1080x1350 (4:5) slides:
+cover → one slide per puzzle → an answers slide with every solution ringed.
+```
+python3 -I puzzles/make.py <out_dir> <slot> [seed]      # writes <slot>_script.json
+NODE_PATH=$(npm root -g) node puzzles/carousel.js <script.json> <out_dir>
+```
+Prints `SLIDES=[...]` with the jpg paths, in order. 4:5 is the tallest ratio Facebook and
+Instagram both show in full, so the same set works on either.
+
+## No watermarks
+Nothing carries a persistent footer, handle or branding chip — not the videos, not the carousels.
+Only per-slide CTAs ("COMMENT YOUR ANSWER", "HOW MANY DID YOU GET?") and the video end cards remain.
+Do not add a standing watermark back to any format.
