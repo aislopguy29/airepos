@@ -1,11 +1,13 @@
 {
  "title": "SPOT THE ODD ONE",
- "sub": "3 rounds · 5 seconds each",
- "footer": "Can you beat the timer?",
- "search": 5.0,
+ "title2": "IN 3 SECONDS",
+ "sub": "4 rounds · gets harder",
+ "footer": "new puzzle every day",
+ "search": 2.9,
  "rounds": [
-  {"cols":5,"rows":7,"hue":265,"odd":[3,4],"prompt":"One of them is a different colour","diff":{"hue":195}},
-  {"cols":6,"rows":9,"hue":150,"odd":[1,6],"prompt":"One of them is not smiling","diff":{"frown":true}},
-  {"cols":7,"rows":10,"hue":30,"odd":[5,3],"prompt":"One has a smaller eye","diff":{"eye":true}}
+  {"cols":4,"rows":6,"odd":[2,3],"prompt":"ONE IS UPSIDE DOWN","diff":{"tilt":true}},
+  {"cols":5,"rows":7,"odd":[1,5],"prompt":"ONE IS NOT SMILING","diff":{"frown":true}},
+  {"cols":6,"rows":8,"odd":[4,2],"prompt":"ONE HAS A TINY EYE","diff":{"eye":true}},
+  {"cols":7,"rows":9,"odd":[2,7],"prompt":"ONE IS A DIFFERENT COLOUR","diff":{"col":"#4fb6ff"}}
  ]
 }
