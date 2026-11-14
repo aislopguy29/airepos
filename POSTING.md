@@ -5,14 +5,15 @@ A video is never posted twice to the same platform. Facebook mirrors whatever In
 
 | Slot | ET | Producer | Goes to |
 |---|---|---|---|
-| p1 | 09:12 | puzzles (spot the odd one) | IG @thatdatalover, FB, YouTube, TikTok |
-| s1 | 11:41 | lab (sim video) | IG eas.ydata, FB, YouTube, TikTok |
-| p2 | 13:23 | puzzles (eye-jump drill) | IG @thatdatalover, FB, YouTube |
-| s2 | 15:47 | lab (sim video) | IG eas.ydata, FB, TikTok |
-| p3 | 18:14 | puzzles (spot the odd one) | IG @thatdatalover, FB, YouTube, TikTok |
-| s3 | 20:36 | lab (sim video) | IG eas.ydata, FB, YouTube, TikTok |
+| p1 | 09:12 | puzzles (spot the odd one) | IG @thatdatalover, FB, **YouTube**, TikTok |
+| s1 | 11:41 | lab (sim video) | IG eas.ydata, FB, TikTok |
+| p2 | 13:23 | puzzles (eye-jump drill) | IG @thatdatalover, FB, TikTok |
+| s2 | 15:47 | lab (sim video) | IG eas.ydata, FB |
+| p3 | 18:14 | puzzles (spot the odd one) | IG @thatdatalover, FB, TikTok |
+| s3 | 20:36 | lab (sim video) | IG eas.ydata, FB, TikTok |
 
-Daily: 3 + 3 on the two Instagram accounts, 6 on Facebook, 5 YouTube, 5 TikTok.
+Daily: 3 + 3 on the two Instagram accounts, 6 on Facebook, **1 YouTube** (p1 only), 5 TikTok.
+p1 is the single YouTube post of the day, so it should be the strongest build.
 
 ## Which tool posts where
 - **Instagram** — Windsor `execute_action` / `create_video_post`. Windsor is the only tool here

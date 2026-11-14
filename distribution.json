@@ -1,19 +1,105 @@
 {
- "note": "6 unique videos a day. Each slot is produced once, then cross-posted. No video is ever posted twice to the same platform. No watermarks on any output.",
+ "note": "6 unique videos a day. Each slot is produced once, then cross-posted. YouTube gets ONE post a day (slot p1 only). No video is ever posted twice to the same platform. No watermarks on any output.",
  "accounts": {
-  "ig_thatdatalover": {"tool": "windsor", "connector": "instagram", "account": "17841407181847902"},
-  "ig_easydata":     {"tool": "windsor", "connector": "instagram", "account": "17841466161283245"},
-  "facebook":        {"tool": "metricool", "network": "facebook", "blogId": "8071801"},
-  "youtube":         {"tool": "metricool", "network": "youtube",  "blogId": "8071801"},
-  "tiktok":          {"tool": "metricool", "network": "tiktok",   "blogId": "8071801"}
+  "ig_thatdatalover": {
+   "tool": "windsor",
+   "connector": "instagram",
+   "account": "17841407181847902"
+  },
+  "ig_easydata": {
+   "tool": "windsor",
+   "connector": "instagram",
+   "account": "17841466161283245"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "network": "facebook",
+   "blogId": "8071801"
+  },
+  "youtube": {
+   "tool": "metricool",
+   "network": "youtube",
+   "blogId": "8071801"
+  },
+  "tiktok": {
+   "tool": "metricool",
+   "network": "tiktok",
+   "blogId": "8071801"
+  }
  },
  "slots": [
-  {"id":"p1","time":"09:12","producer":"puzzles","format":"spot","targets":["ig_thatdatalover","facebook","youtube","tiktok"]},
-  {"id":"s1","time":"11:41","producer":"lab","format":"sim","targets":["ig_easydata","facebook","youtube","tiktok"]},
-  {"id":"p2","time":"13:23","producer":"puzzles","format":"eyejump","targets":["ig_thatdatalover","facebook","youtube"]},
-  {"id":"s2","time":"15:47","producer":"lab","format":"sim","targets":["ig_easydata","facebook","tiktok"]},
-  {"id":"p3","time":"18:14","producer":"puzzles","format":"spot","targets":["ig_thatdatalover","facebook","youtube","tiktok"]},
-  {"id":"s3","time":"20:36","producer":"lab","format":"sim","targets":["ig_easydata","facebook","youtube","tiktok"]}
+  {
+   "id": "p1",
+   "time": "09:12",
+   "producer": "puzzles",
+   "format": "spot",
+   "targets": [
+    "ig_thatdatalover",
+    "facebook",
+    "youtube",
+    "tiktok"
+   ]
+  },
+  {
+   "id": "s1",
+   "time": "11:41",
+   "producer": "lab",
+   "format": "sim",
+   "targets": [
+    "ig_easydata",
+    "facebook",
+    "tiktok"
+   ]
+  },
+  {
+   "id": "p2",
+   "time": "13:23",
+   "producer": "puzzles",
+   "format": "eyejump",
+   "targets": [
+    "ig_thatdatalover",
+    "facebook",
+    "tiktok"
+   ]
+  },
+  {
+   "id": "s2",
+   "time": "15:47",
+   "producer": "lab",
+   "format": "sim",
+   "targets": [
+    "ig_easydata",
+    "facebook"
+   ]
+  },
+  {
+   "id": "p3",
+   "time": "18:14",
+   "producer": "puzzles",
+   "format": "spot",
+   "targets": [
+    "ig_thatdatalover",
+    "facebook",
+    "tiktok"
+   ]
+  },
+  {
+   "id": "s3",
+   "time": "20:36",
+   "producer": "lab",
+   "format": "sim",
+   "targets": [
+    "ig_easydata",
+    "facebook",
+    "tiktok"
+   ]
+  }
  ],
- "daily_totals": {"ig_thatdatalover": 3, "ig_easydata": 3, "facebook": 6, "youtube": 5, "tiktok": 5}
+ "daily_totals": {
+  "ig_thatdatalover": 3,
+  "ig_easydata": 3,
+  "facebook": 6,
+  "youtube": 1,
+  "tiktok": 5
+ }
 }
