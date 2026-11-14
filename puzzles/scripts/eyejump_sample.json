@@ -1,0 +1,13 @@
+{
+ "title": "HOW FAST CAN",
+ "title2": "YOUR EYES JUMP?",
+ "sub": "5 levels · each one faster",
+ "footer": "new drill every day",
+ "levels": [
+  {"bpm": 60,  "jumps": 6, "pattern": "lr",     "label": "FOLLOW THE DOT. EYES ONLY."},
+  {"bpm": 100, "jumps": 8, "pattern": "ud",     "label": "NOW UP AND DOWN"},
+  {"bpm": 150, "jumps": 10,"pattern": "diag",   "label": "CORNERS. DON'T BLINK."},
+  {"bpm": 200, "jumps": 12,"pattern": "circle", "label": "AROUND THE CLOCK"},
+  {"bpm": 280, "jumps": 14,"pattern": "random", "label": "ANYWHERE. GOOD LUCK."}
+ ]
+}

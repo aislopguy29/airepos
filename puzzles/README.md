@@ -45,3 +45,20 @@ Add a new type by giving a round a `mode` in the script json and handling it in 
 - `caption.py` reports exactly what shows in the feed before "... more" (saved as `caption_first_125`).
 They are vendored, not installed as skills, because scheduled runs start from a fresh session with
 no plugins. If a tool is missing the pipeline falls back to the plain template, it never fails.
+
+## Second format: eye-jump drill
+`eyejump.html` + `eyeaudio.py`, same renderer. A dot teleports between positions and the viewer
+tracks it with their eyes only; each level is faster than the last.
+
+Build by hand:
+```
+python3 -I puzzles/eyeaudio.py puzzles/scripts/<script>.json /tmp/ej.wav
+ffmpeg -y -i /tmp/ej.wav -af loudnorm=I=-14:TP=-1.2:LRA=10 -ar 44100 -ac 2 /tmp/ejn.wav
+PAGE=eyejump.html NODE_PATH=$(npm root -g) node puzzles/render.js <script>.json out.mp4 /tmp/ejn.wav
+ffmpeg -y -i out.mp4 -c:v libx264 -crf 23 -preset fast -tune animation -pix_fmt yuv420p -c:a copy -movflags +faststart final.mp4
+```
+Script shape: `{title, title2, sub, footer, levels:[{bpm, jumps, pattern, label}]}`.
+Patterns: `lr`, `ud`, `diag`, `circle`, `random`. Keep bpm between 60 and ~300; above that the dot
+moves faster than a saccade can land and the drill stops meaning anything.
+Each level gets a label beat (a ready dot plus countdown), then its jumps; a blip lands on every move.
+`render.js` picks the page with the `PAGE` env var, so both formats share one renderer.
