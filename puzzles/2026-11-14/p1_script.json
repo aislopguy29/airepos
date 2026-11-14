@@ -1,0 +1,91 @@
+{
+ "title": "CAN YOU FIND IT?",
+ "title2": "IN 3 SECONDS",
+ "shape": "circle",
+ "sub": "5 rounds \u00b7 don't blink",
+ "footer": "new puzzle every day",
+ "search": 3.1,
+ "rounds": [
+  {
+   "cols": 4,
+   "rows": 6,
+   "odd": [
+    3,
+    4
+   ],
+   "prompt": "ONE IS NOT SMILING",
+   "diff": {
+    "frown": true
+   },
+   "col": "#ff5470",
+   "shape": "circle"
+  },
+  {
+   "cols": 5,
+   "rows": 7,
+   "odd": [
+    3,
+    1
+   ],
+   "prompt": "ONE IS SMALLER",
+   "diff": {
+    "size": true
+   },
+   "col": "#00d0a3",
+   "shape": "circle"
+  },
+  {
+   "cols": 6,
+   "rows": 8,
+   "mode": "count",
+   "targets": [
+    [
+     0,
+     7
+    ],
+    [
+     2,
+     2
+    ]
+   ],
+   "odd": [
+    0,
+    7
+   ],
+   "prompt": "HOW MANY ARE NOT SMILING?",
+   "diff": {
+    "frown": true
+   },
+   "col": "#ffd000",
+   "shape": "circle"
+  },
+  {
+   "cols": 7,
+   "rows": 9,
+   "odd": [
+    6,
+    1
+   ],
+   "prompt": "ONE IS WINKING",
+   "diff": {
+    "wink": true
+   },
+   "col": "#2ea8ff",
+   "shape": "circle"
+  },
+  {
+   "cols": 8,
+   "rows": 10,
+   "odd": [
+    7,
+    0
+   ],
+   "prompt": "ONE HAS A NOSE",
+   "diff": {
+    "extra": true
+   },
+   "col": "#a855f7",
+   "shape": "circle"
+  }
+ ]
+}

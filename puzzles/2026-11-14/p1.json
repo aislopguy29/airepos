@@ -1,0 +1,24 @@
+{
+ "slot": "p1",
+ "format": "spot",
+ "title": "CAN YOU FIND IT?",
+ "hook": "Only 1 in 10 people clear all 5.",
+ "hook_score": 81.0,
+ "rounds": 5,
+ "search": 3.1,
+ "seed": 2026,
+ "music_style": "house bed + event-synced SFX",
+ "caption_style": "stat hook + format + score CTA",
+ "theme": "circle faces / pop",
+ "captions_by_target": {
+  "ig": "Only 1 in 10 people clear all 5.\n\n5 rounds, 3.1s each, harder every time.\n\nComment how many you spotted.\n\n#spotthedifference #puzzle #brainteaser #eyetest #thatdatalover\n",
+  "tiktok": "Only 1 in 10 people clear all 5. \ud83d\udc40 How many did you get?\n\n#puzzle #eyetest #brainteaser",
+  "youtube_title": "Only 1% Spot All 5 | Spot The Odd One",
+  "youtube": "Only 1 in 10 people clear all 5. 5 rounds, 3.1 seconds each.\n\nComment your score below.\n\n#shorts #puzzle #brainteaser #eyetest #spotthedifference",
+  "facebook": "Only 1 in 10 people clear all 5. Five rounds, three seconds each \u2014 tell us how many you actually got."
+ },
+ "caption": "Only 1 in 10 people clear all 5.\n\n5 rounds, 3.1s each, harder every time.\n\nComment how many you spotted.\n\n#spotthedifference #puzzle #brainteaser #eyetest #thatdatalover\n",
+ "thumb_offset_ms": 900,
+ "video": "puzzles/2026-11-14/p1.mp4",
+ "duration": 30.5
+}
