@@ -1,0 +1,68 @@
+{
+ "slot": "p2",
+ "format": "eyejump",
+ "title": "CAN YOUR EYES KEEP UP?",
+ "hook": "Bet you lose this dot before it hits 380 BPM.",
+ "hook_score": 87.0,
+ "hook_candidates": [
+  [
+   87.0,
+   "Bet you lose this dot before it hits 380 BPM."
+  ],
+  [
+   84.4,
+   "Your eyes vs a dot at 380 BPM. Who blinks first?"
+  ],
+  [
+   84.4,
+   "You vs one dot at 380 BPM. Who blinks first?"
+  ],
+  [
+   77.8,
+   "Track this dot up to 380 BPM without moving your head."
+  ],
+  [
+   62.6,
+   "380 BPM on the last level. Most eyes quit by level 4."
+  ],
+  [
+   51.8,
+   "Can you track one dot at 380 BPM?"
+  ]
+ ],
+ "levels": 6,
+ "jumps": 81,
+ "unique_sounds": 81,
+ "patterns": [
+  "diag",
+  "lr",
+  "circle",
+  "ud",
+  "random",
+  "random"
+ ],
+ "bpm": [
+  120,
+  165,
+  215,
+  265,
+  320,
+  380
+ ],
+ "pos_seed": 167,
+ "audio_seed": 663007,
+ "caption": "Bet you lose this dot before it hits 380 BPM.\n\nSix levels. It opens at an easy 120 BPM, then speeds up every round until the dot is basically teleporting across the screen. Eyes only, head still.\n\nComment the level you lost it.\n\n#eyetracking #reflexes #focuschallenge #thatdatalover\n",
+ "captions_by_target": {
+  "ig_thatdatalover": "Bet you lose this dot before it hits 380 BPM.\n\nSix levels. It opens at an easy 120 BPM, then speeds up every round until the dot is basically teleporting across the screen. Eyes only, head still.\n\nComment the level you lost it.\n\n#eyetracking #reflexes #focuschallenge #thatdatalover\n",
+  "tiktok": "Level 6 runs at 380 BPM. Which level broke you? #eyechallenge #reactiontime #focustest",
+  "tiktok_title": "Eye jump drill: 120 to 380 BPM",
+  "facebook": "One dot, six levels, and it speeds up from 120 all the way to 380 BPM. Keep your head still and tell us which level got you."
+ },
+ "caption_style": "dare hook + paced format line + level CTA",
+ "music_style": "no-repeat voice bank (14 timbres x pentatonic), sparse kick/hat bed",
+ "theme": "eye jump drill",
+ "viral_reason": "interactive drill, self-scoring, invites retry",
+ "thumb_offset_ms": 600,
+ "video": "puzzles/2026-11-14/p2.mp4",
+ "duration": 28.3
+}

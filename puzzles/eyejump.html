@@ -26,6 +26,7 @@ function posOf(pattern,i,seed){
  if(pattern==='ud')      return [CX, CY+(i%2?SPAN:-SPAN)];
  if(pattern==='diag')    {const q=[[-1,-1],[1,1],[1,-1],[-1,1]][i%4];return [CX+q[0]*SPAN*.8, CY+q[1]*SPAN*.8]}
  if(pattern==='circle')  {const a=(i%8)/8*Math.PI*2;return [CX+Math.cos(a)*SPAN, CY+Math.sin(a)*SPAN]}
+ seed+=(S.pos_seed||0); // per-video offset so random levels differ day to day (0 = old layouts)
  const r=rnd(i*7.3+seed*11); const a=r*Math.PI*2, rr=.55+rnd(i*3.1+seed)*0.45;
  return [CX+Math.cos(a)*SPAN*rr, CY+Math.sin(a)*SPAN*rr];
 }
@@ -65,12 +66,12 @@ function frame(t){
  for(let i=0;i<22;i++){const x=rnd(i)*1080,y=(rnd(i+5)*1920+t*40)%2000;g.save();g.translate(x,y);g.rotate(t+i);
   g.globalAlpha=.22;i%2?star(0,0,13,ACC[i%6],0):(g.fillStyle=ACC[(i+3)%6],g.fillRect(-9,-9,18,18));g.restore()}
  g.textAlign='center';g.textBaseline='middle';
- if(t<INTRO){const p=pop(cl(t,0,.28));g.save();g.translate(540,CY-120);g.scale(p,p);g.rotate(jig(t,0,.012));
+ if(t<INTRO){const p=pop(cl(t+.1,0,.38)); /* already mid-pop on frame one */ g.save();g.translate(540,CY-120);g.scale(p,p);g.rotate(jig(t,0,.012));
   outText(S.title,0,-70,116,P.sun,P.ink,null,960);
   outText(S.title2,0,52,104,P.pink,P.ink,null,960);g.restore();
   // dot already flicking so there is motion in frame one
   const q=Math.floor(t/0.16); const bx=CX+(q%2?SPAN*.75:-SPAN*.75);
-  dot(bx,CY+330,50,ACC[q%6],(t%0.16),0.16);
+  dot(bx,CY+330,50,ACC[q%6],(t%0.16)+.05,0.16);
   g.save();g.globalAlpha=cl(t,.25,.5);chip(540,CY+560,'EYES ONLY. HEAD STILL.',P.ink,40,.02,1+.05*Math.sin(t*12));g.restore();
  } else if(t<DRILL_END){
   const lab=cl(t,L.t0,L.t0+.35)*(1-cl(t,L.tj+.25,L.tj+.6));

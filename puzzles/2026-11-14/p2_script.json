@@ -1,0 +1,17 @@
+{
+ "title": "CAN YOUR EYES",
+ "title2": "KEEP UP?",
+ "sub": "6 rounds · faster every time",
+ "footer": "",
+ "intro": 0.9,
+ "label_beat": 0.55,
+ "pos_seed": 167,
+ "levels": [
+  {"bpm": 120, "jumps": 8,  "pattern": "diag",   "label": "WARM UP: CORNERS"},
+  {"bpm": 165, "jumps": 10, "pattern": "lr",     "label": "SIDE TO SIDE"},
+  {"bpm": 215, "jumps": 12, "pattern": "circle", "label": "FULL LAP"},
+  {"bpm": 265, "jumps": 14, "pattern": "ud",     "label": "TOP. BOTTOM. TOP."},
+  {"bpm": 320, "jumps": 17, "pattern": "random", "label": "NO PATTERN NOW"},
+  {"bpm": 380, "jumps": 20, "pattern": "random", "label": "380 BPM. BLINK AND IT'S GONE"}
+ ]
+}
