@@ -53,5 +53,10 @@
    16.13,
    18.08
   ]
+ },
+ "post_error": {
+  "at": "2026-11-14T10:05-05:00",
+  "step": "instagram create_video_post (2 tries, 60 s apart)",
+  "error": "No instagram accounts are configured for calebbeauchesne3gmailcom. Select your accounts at https://onboard.windsor.ai?datasource=instagram"
  }
 }
