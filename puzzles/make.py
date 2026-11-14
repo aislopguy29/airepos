@@ -13,6 +13,12 @@ PAL = {
  "mellow":  ["#f49ac1","#7fd8bd","#f6cf7a","#8cc6f0","#b3a4e8","#f0a080"],
 }
 SHAPES = ["circle","square","star","blob"]
+COUNT_DIFFS = [
+ ("c_frown", {"frown": True}, "HOW MANY ARE NOT SMILING?"),
+ ("c_wink",  {"wink": True},  "HOW MANY ARE WINKING?"),
+ ("c_tilt",  {"tilt": True},  "HOW MANY ARE UPSIDE DOWN?"),
+ ("c_size",  {"size": True},  "HOW MANY ARE SMALLER?"),
+]
 DIFFS = [
  ("tilt",  {"tilt": True},  "ONE IS UPSIDE DOWN"),
  ("frown", {"frown": True}, "ONE IS NOT SMILING"),
@@ -47,6 +53,8 @@ for _ in range(40):
 # hard ones last
 order = {"col":0,"tilt":1,"frown":2,"rot":3,"size":4,"flat":5,"wink":6,"extra":7,"eye":8}
 picked.sort(key=lambda d: order.get(d[0], 5))
+# one round in three is a COUNT round (answer is a number, not a position)
+count_at = R.choice([1, 2, nrounds-2]) if nrounds >= 4 else -1
 rounds = []
 for i, (did, diff, prompt) in enumerate(picked):
     cols = 4 + i; rows = cols + 2
@@ -54,9 +62,18 @@ for i, (did, diff, prompt) in enumerate(picked):
     if did == "col":
         alt = R.choice([c for c in pal if c != col])
         diff = {"col": alt}
-    rounds.append({"cols": cols, "rows": rows,
-                   "odd": [R.randrange(cols), R.randrange(rows)],
-                   "prompt": prompt, "diff": diff, "col": col, "shape": shape})
+    if i == count_at:
+        cdid, cdiff, cprompt = R.choice(COUNT_DIFFS)
+        n_targets = R.choice([2, 3, 3, 4])
+        cells = R.sample([[x, y] for x in range(cols) for y in range(rows)], n_targets)
+        rounds.append({"cols": cols, "rows": rows, "mode": "count", "targets": cells,
+                       "odd": cells[0], "prompt": cprompt, "diff": cdiff,
+                       "col": col, "shape": shape})
+        picked[i] = (cdid, cdiff, cprompt)
+    else:
+        rounds.append({"cols": cols, "rows": rows,
+                       "odd": [R.randrange(cols), R.randrange(rows)],
+                       "prompt": prompt, "diff": diff, "col": col, "shape": shape})
 search = round(R.choice([2.7, 2.9, 3.1]), 1)
 script = {"title": title, "title2": f"IN {int(search)} SECONDS", "shape": shape,
           "sub": R.choice(SUBS).format(n=nrounds), "footer": "new puzzle every day",

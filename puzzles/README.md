@@ -20,6 +20,13 @@ This account posts timed visual puzzles. No political or statistics content.
   gentle sidechain, synced to the round timeline. Listenable, not harsh. No narrator.
 - `narrate.py` — unused for this format (kept for other series).
 
+## Round types
+- **odd** (default): one cell differs; reveal zoom-punches onto it.
+- **count**: several cells share a trait and the answer is a number ("HOW MANY ARE WINKING?").
+  The reveal rings every target in sequence and shows "IT WAS N" instead of zooming.
+  `make.py` makes roughly one round in four a count round, never the first or last.
+Add a new type by giving a round a `mode` in the script json and handling it in `grid()`.
+
 ## Format rules
 - Light cream/pastel theme, bold outlined text, constant motion, sunburst background.
 - Per round: prompt at top, grid, countdown bar; tension ramps (vignette closes, rays speed up,
