@@ -1,0 +1,16 @@
+{
+ "title": "THE NIGHT SHIFT",
+ "day": 1,
+ "tag": "ROOM 9 STAYS SHUT",
+ "recap": "",
+ "textY": 0,
+ "choice_dur": 7.5,
+ "choice_scene": "door",
+ "beats": [
+  {"scene":"window","dur":6.5,"lines":["Night one of your new job.","One rule on the whole sheet:","Room 9 stays shut until sunrise."]},
+  {"scene":"corridor","dur":7.0,"lines":["11:40pm. Lights out, floor by floor.","Your badge opens every door","except that one."]},
+  {"scene":"door","dur":7.0,"lines":["3:12am. Something taps.","Three times. Then stops.","Then three times again."]},
+  {"scene":"dark","dur":5.5,"lines":["The log says the room","has been empty for six years."]}
+ ],
+ "choice": {"q":"Do you open Room 9,|or log it and walk away?","a":"OPEN","b":"LOG"}
+}

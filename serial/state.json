@@ -1,0 +1,12 @@
+{
+ "story": "THE NIGHT SHIFT",
+ "day": 1,
+ "arc_length": 7,
+ "last_vote": null,
+ "last_media_id": null,
+ "choice": {
+  "a": "OPEN",
+  "b": "LOG"
+ },
+ "next_day": 2
+}

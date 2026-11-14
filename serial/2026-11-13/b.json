@@ -1,0 +1,14 @@
+{
+ "story": "THE NIGHT SHIFT",
+ "day": 1,
+ "choice": {
+  "a": "OPEN",
+  "b": "LOG"
+ },
+ "caption": "Night one. One rule on the sheet: Room 9 stays shut until sunrise. At 3:12am something taps three times.\n\nThe log says that room has been empty for six years.\n\nOriginal fiction, told one part a day. You decide what happens next.\n\nComment OPEN or LOG \u2014 the majority writes Part 2.\n\n#thenightshift #storytime #interactivestory #suspense #thatdatalover",
+ "caption_style": "cold-open scene then rule reveal",
+ "music_style": "dark_ambient",
+ "theme": "night-security serial",
+ "viral_reason": "audience-vote serial format with a binary cliffhanger",
+ "thumb_offset_ms": 1200
+}
