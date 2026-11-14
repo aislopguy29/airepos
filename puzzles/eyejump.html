@@ -9,7 +9,7 @@ const P={paper:'#fdf6e9',paper2:'#ffeedd',ink:'#1f1710',pink:'#ff6fa5',mint:'#2f
 const ACC=[P.pink,P.mint,P.sun,P.sky,P.grape,P.coral];
 const rnd=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
 const jig=(t,k,a)=>Math.sin(t*14+k)*a;
-const INTRO=2.4, LABEL=1.3, OUTRO=4.2;
+const INTRO=S.intro!==undefined?S.intro:0.9, LABEL=S.label_beat!==undefined?S.label_beat:0.55, OUTRO=3.6;
 // build the jump timeline
 const JUMPS=[]; let T=INTRO;
 S.levels.forEach((L,li)=>{
@@ -65,15 +65,13 @@ function frame(t){
  for(let i=0;i<22;i++){const x=rnd(i)*1080,y=(rnd(i+5)*1920+t*40)%2000;g.save();g.translate(x,y);g.rotate(t+i);
   g.globalAlpha=.22;i%2?star(0,0,13,ACC[i%6],0):(g.fillStyle=ACC[(i+3)%6],g.fillRect(-9,-9,18,18));g.restore()}
  g.textAlign='center';g.textBaseline='middle';
- if(t<INTRO){const p=pop(cl(t,.05,.8));g.save();g.translate(540,760);g.scale(p,p);g.rotate(jig(t,0,.01));
-  outText(S.title,0,-70,112,P.sun,P.ink,null,950);
-  outText(S.title2,0,50,100,P.pink,P.ink,null,950);g.restore();
-  chip(540,1010,S.sub,P.grape,44,jig(t,2,.02));
-  g.save();g.globalAlpha=cl(t,.7,1.2);chip(540,1150,'KEEP YOUR HEAD STILL',P.ink,40,.02,1+.05*Math.sin(t*10));g.restore();
-  g.save();g.globalAlpha=cl(t,1.3,1.8);chip(540,1290,'EYES ONLY. NO SCROLLING.',P.coral,36,-.02);g.restore();
-  star(180,560,62,P.mint,t*1.5);star(900,620,50,P.sky,-t*1.2);
-  // preview dot bouncing
-  const bx=CX+Math.sin(t*3)*SPAN; dot(bx,1480,42,P.pink,.5,1);
+ if(t<INTRO){const p=pop(cl(t,0,.28));g.save();g.translate(540,CY-120);g.scale(p,p);g.rotate(jig(t,0,.012));
+  outText(S.title,0,-70,116,P.sun,P.ink,null,960);
+  outText(S.title2,0,52,104,P.pink,P.ink,null,960);g.restore();
+  // dot already flicking so there is motion in frame one
+  const q=Math.floor(t/0.16); const bx=CX+(q%2?SPAN*.75:-SPAN*.75);
+  dot(bx,CY+330,50,ACC[q%6],(t%0.16),0.16);
+  g.save();g.globalAlpha=cl(t,.25,.5);chip(540,CY+560,'EYES ONLY. HEAD STILL.',P.ink,40,.02,1+.05*Math.sin(t*12));g.restore();
  } else if(t<DRILL_END){
   const lab=cl(t,L.t0,L.t0+.35)*(1-cl(t,L.tj+.25,L.tj+.6));
   // the moving target
@@ -102,6 +100,8 @@ function frame(t){
    g.translate(540,330);g.scale(p,p);chip(0,0,'LEVEL '+(li+1)+' · '+L.bpm+' BPM',ACC[li%6],56,0);g.restore();}
   else chip(540,330,'LEVEL '+(li+1)+' · '+L.bpm+' BPM',ACC[li%6],48,0);
   outText(L.label,540,470,50,'#fff',P.ink,15,960);
+  if(li===0&&t<L.tj+1.4){g.save();g.globalAlpha=1-cl(t,L.tj+.9,L.tj+1.4);
+   chip(540,1430,S.sub,P.grape,38,jig(t,3,.015));g.restore()}
   // speed meter
   const w=760,x0=160,y0=1660;
   g.beginPath();g.roundRect(x0,y0,w,30,15);g.fillStyle='#fff';g.fill();g.lineWidth=6;g.strokeStyle=P.ink;g.stroke();

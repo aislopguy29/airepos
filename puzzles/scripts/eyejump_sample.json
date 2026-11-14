@@ -1,13 +1,16 @@
 {
  "title": "HOW FAST CAN",
  "title2": "YOUR EYES JUMP?",
- "sub": "5 levels · each one faster",
+ "sub": "6 levels · each one faster",
  "footer": "new drill every day",
+ "intro": 0.9,
+ "label_beat": 0.55,
  "levels": [
-  {"bpm": 60,  "jumps": 6, "pattern": "lr",     "label": "FOLLOW THE DOT. EYES ONLY."},
-  {"bpm": 100, "jumps": 8, "pattern": "ud",     "label": "NOW UP AND DOWN"},
-  {"bpm": 150, "jumps": 10,"pattern": "diag",   "label": "CORNERS. DON'T BLINK."},
-  {"bpm": 200, "jumps": 12,"pattern": "circle", "label": "AROUND THE CLOCK"},
-  {"bpm": 280, "jumps": 14,"pattern": "random", "label": "ANYWHERE. GOOD LUCK."}
+  {"bpm": 120, "jumps": 8,  "pattern": "lr",     "label": "FOLLOW THE DOT"},
+  {"bpm": 170, "jumps": 10, "pattern": "ud",     "label": "UP AND DOWN"},
+  {"bpm": 220, "jumps": 12, "pattern": "diag",   "label": "CORNERS"},
+  {"bpm": 270, "jumps": 14, "pattern": "circle", "label": "AROUND THE CLOCK"},
+  {"bpm": 320, "jumps": 16, "pattern": "random", "label": "ANYWHERE"},
+  {"bpm": 380, "jumps": 18, "pattern": "random", "label": "NOBODY GETS THIS ONE"}
  ]
 }
