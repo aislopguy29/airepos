@@ -1,0 +1,39 @@
+{
+ "id": "2026-11-14_s2",
+ "date": "2026-11-14",
+ "slot": "s2",
+ "kind": "rerun",
+ "style_id": "brick_siege",
+ "format": "1-vs-1 fortress breakout duel: mirrored brick forts top/bottom of a vertical grid arena, cores auto-fire balls that smash enemy bricks (steel 2 hits, bomb chain reactions, x2 split bricks), segmented core-HP bars above/below, slow-mo final hit, losing fort collapses in a chain reaction",
+ "theme": "shark vs octopus (ocean-animal 'who would win' 1-vs-1 matchup: the obvious favorite vs the clever underdog)",
+ "viral_reason": "VARIETY_RULES rule 2 own results (today's s1 Windsor read for eas.ydata: 1-vs-1 'X vs Y' matchups ~10x the views of multi-entrant races), themed with rule 3's evergreen 'which would win' animal matchup; ocean animals are a different family from s1's fire vs ice and from today's food showdowns. No aislop/research/latest.md trend doc yet.",
+ "episode": 2,
+ "seed": 1131,
+ "seed_search_start": 1114,
+ "cast": [
+  "SHARK",
+  "OCTOPUS"
+ ],
+ "music_style": "cinematic: 72 bpm A harmonic minor, saw string pad over a low drone, taiko kit; brick hits pitched up the scale by fort depth, bomb booms, core thuds, riser into the slow-mo final hit, bell fanfare on the winner card",
+ "caption_style": "fact trio",
+ "caption": "The shark built its fort up top. The octopus dug in down below.\n\nThree rules of the siege:\nEvery ball that slips through smashes enemy bricks.\nBomb bricks set off chain reactions.\nCrack the other core 8 times and that whole fort falls.\n\nWhose fort is still standing at the end, the shark's or the octopus's?\n\n#sharkvsoctopus #brickbreaker #whowouldwin #oceananimals #chainreaction",
+ "captions_by_target": {
+  "ig_easydata": "The shark built its fort up top. The octopus dug in down below.\n\nThree rules of the siege:\nEvery ball that slips through smashes enemy bricks.\nBomb bricks set off chain reactions.\nCrack the other core 8 times and that whole fort falls.\n\nWhose fort is still standing at the end, the shark's or the octopus's?\n\n#sharkvsoctopus #brickbreaker #whowouldwin #oceananimals #chainreaction",
+  "facebook": "A shark fort and an octopus fort trade bouncing balls until one core cracks wide open. Which side did you pick before the first brick broke?"
+ },
+ "facebook_title": "Shark vs Octopus: Fort Siege",
+ "comment": "Next siege idea: steel bricks only, no bombs. Which fort handles that better?",
+ "thumb_offset_ms": 1200,
+ "video": "lab/2026-11-14/s2.mp4",
+ "duration": 24.46,
+ "result": {
+  "winner": "OCTOPUS",
+  "loser": "SHARK",
+  "winner_hp_left": 1,
+  "lead_changes": 2,
+  "max_deficit_overcome": 3,
+  "final_hit_s": 18.94,
+  "chain_reactions": 1
+ },
+ "posted": []
+}

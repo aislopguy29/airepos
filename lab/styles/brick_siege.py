@@ -255,7 +255,14 @@ def make_bg():
     return bg
 
 
-def build(out_mp4, seed=1, ep=1, log=print, stills=None):
+def fitk(spr, maxw): return min(1.0, maxw / spr.shape[1])
+
+
+def build(out_mp4, seed=1, ep=1, log=print, stills=None, cast=None, mood=None):
+    """cast: optional [dict(name, emo, ball, brick, dark, hud), dict(...)] overriding TEAMS (top, bottom);
+    mood: optional engine MOODS key for the backing bed. Defaults reproduce episode 1 (DOG vs CAT, chiptune)."""
+    global TEAMS
+    if cast: TEAMS = [dict(TEAMS[i], **cast[i]) for i in range(2)]
     seed, sim = pick(seed, log=log); fr = sim["frames"]; tf = sim["tf"]; win = sim["winner"]; lose = 1 - win
     owner0, kind0 = sim["owner0"], sim["kind0"]; ev = list(sim["ev"]); dest = sim["dest"].copy(); crack = sim["crack"]
     ccy = [AY0 + CORE_R * CS / 2, AY0 + AH - CORE_R * CS / 2]; ccx = AX0 + (CORE_C[0] + CORE_C[1]) / 2 * CS
@@ -317,10 +324,12 @@ def build(out_mp4, seed=1, ep=1, log=print, stills=None):
         return out
     tag = E.text_sprite(f"BRICK SIEGE  ·  #{ep}", 28, (200, 190, 255), "bold", spacing=4)
     band = np.ones((H, 1, 1), np.float32); band[:376] = .2; band[1584:] = .2
+    name_spr = [E.text_sprite(TEAMS[k]["name"], 40, TEAMS[k]["hud"], "black", stroke=3, stroke_color=(0, 0, 0)) for k in (0, 1)]
+    hud_x0 = max(268, 145 + max(s_.shape[1] for s_ in name_spr) + 18)
     def hud(f, t, v, team, y):
         tm = TEAMS[team]; hp = hp_at(t, team); E.blit(f, emoji(tm["emo"], 62), 104, y)
-        E.blit(f, E.text_sprite(tm["name"], 40, tm["hud"], "black", stroke=3, stroke_color=(0, 0, 0)), 145, y, anchor="l")
-        x0, x1, gap = 268, 930, 8; sw = (x1 - x0 - gap * (CORE_HP - 1)) / CORE_HP
+        E.blit(f, name_spr[team], 145, y, anchor="l")
+        x0, x1, gap = hud_x0, 930, 8; sw = (x1 - x0 - gap * (CORE_HP - 1)) / CORE_HP
         lost_t = {e[3]: e[1] for e in ev if e[0] == "core" and e[2] == team}
         for k in range(CORE_HP):
             a, b = int(x0 + k * (sw + gap)), int(x0 + k * (sw + gap) + sw)
@@ -408,9 +417,9 @@ def build(out_mp4, seed=1, ep=1, log=print, stills=None):
         E.blit(f, tag, W / 2, 266); hud(f, t, v, 0, 328); hud(f, t, v, 1, 1632)
         if v < T_GATE:                                                                            # hook
             a_ = E.smooth(v / .2); E.pill(f, 90, 846, W - 90, 1124, (0, 0, 0), .7 * a_)
-            vs = E.text_sprite("DOG  VS  CAT", 92, (255, 255, 255), "black", stroke=6, stroke_color=(0, 0, 0))
-            E.blit(f, vs, W / 2, 920, alpha=a_, scale=E.out_back(v / .3))
-            E.blit(f, emoji("🐶", 84), W / 2 - vs.shape[1] / 2 - 56, 920, alpha=a_); E.blit(f, emoji("🐱", 84), W / 2 + vs.shape[1] / 2 + 56, 920, alpha=a_)
+            vs = E.text_sprite(f"{TEAMS[0]['name']}  VS  {TEAMS[1]['name']}", 92, (255, 255, 255), "black", stroke=6, stroke_color=(0, 0, 0)); kv = fitk(vs, 690)
+            E.blit(f, vs, W / 2, 920, alpha=a_, scale=kv * E.out_back(v / .3))
+            E.blit(f, emoji(TEAMS[0]["emo"], 84), W / 2 - vs.shape[1] * kv / 2 - 56, 920, alpha=a_); E.blit(f, emoji(TEAMS[1]["emo"], 84), W / 2 + vs.shape[1] * kv / 2 + 56, 920, alpha=a_)
             E.blit(f, E.text_sprite("FIRST TO CRACK THE OTHER CORE WINS", 36, (255, 230, 140), "bold", stroke=3, stroke_color=(0, 0, 0)), W / 2, 1012, alpha=E.smooth((v - .15) / .25))
             E.blit(f, E.text_sprite("PICK YOUR SIDE NOW", 40, (150, 255, 190), "black", stroke=4, stroke_color=(0, 0, 0)), W / 2, 1076, alpha=E.smooth((v - .5) / .25) * (.75 + .25 * math.sin(v * 12)))
         elif v < T_GATE + .6:
@@ -430,13 +439,15 @@ def build(out_mp4, seed=1, ep=1, log=print, stills=None):
     def card(f, u):
         a_ = E.smooth(u / .3); f[:] = cv2.convertScaleAbs(f, alpha=1 - .82 * a_); tw, tl = TEAMS[win], TEAMS[lose]
         E.blit(f, emoji(tw["emo"], 230), W / 2, 640, alpha=a_, scale=E.out_back(u / .45))
-        E.blit(f, E.text_sprite(f"TEAM {tw['name']} WINS", 92, (255, 255, 255), "black", stroke=7, stroke_color=(0, 0, 0)), W / 2, 850, alpha=a_, scale=E.out_back((u - .1) / .4))
+        ws = E.text_sprite(f"TEAM {tw['name']} WINS", 92, (255, 255, 255), "black", stroke=7, stroke_color=(0, 0, 0))
+        E.blit(f, ws, W / 2, 850, alpha=a_, scale=fitk(ws, 900) * E.out_back((u - .1) / .4))
         E.blit(f, E.text_sprite(f"CORE SURVIVED WITH {hp_at(tf, win)} HP", 38, tw["hud"], "bold", stroke=3, stroke_color=(0, 0, 0)), W / 2, 940, alpha=E.smooth((u - .45) / .3))
         E.blit(f, E.text_sprite(f"THE {tl['name']} FORT COLLAPSED", 34, (200, 200, 215), "bold", stroke=3, stroke_color=(0, 0, 0)), W / 2, 994, alpha=E.smooth((u - .65) / .3))
-        E.blit(f, E.text_sprite("TEAM DOG OR TEAM CAT?", 52, (150, 255, 190), "black", stroke=5, stroke_color=(0, 0, 0)), W / 2, 1160, alpha=E.smooth((u - 1.0) / .3), scale=E.out_back((u - 1.0) / .35))
+        qs = E.text_sprite(f"TEAM {TEAMS[0]['name']} OR TEAM {TEAMS[1]['name']}?", 52, (150, 255, 190), "black", stroke=5, stroke_color=(0, 0, 0))
+        E.blit(f, qs, W / 2, 1160, alpha=E.smooth((u - 1.0) / .3), scale=fitk(qs, 900) * E.out_back((u - 1.0) / .35))
         E.blit(f, E.text_sprite("WHO TAKES THE REMATCH?", 36, (255, 230, 140), "bold", stroke=3, stroke_color=(0, 0, 0)), W / 2, 1232, alpha=E.smooth((u - 1.35) / .3))
     # ---- audio: soft chiptune bed (A mixolydian, 112 bpm), brick blips pitched by depth, bomb booms, core thuds
-    mix = E.Mix(total, mood="chiptune", bpm=112, root=57, scale="mixolydian"); hz = lambda m_: float(E.midi_hz(m_))
+    mix = (E.Mix(total, mood=mood) if mood else E.Mix(total, mood="chiptune", bpm=112, root=57, scale="mixolydian")); hz = lambda m_: float(E.midi_hz(m_))
     beat = 60 / 112
     for j in range(3): mix.add(j * beat * .9, E.pulse(hz(69 + 5 * j), .12, .5, 18), .3)
     mix.add(T_GATE, E.chord([69, 73, 76, 81], 1.0, E.bell), .45); mix.add(T_GATE, E.thump(.5, 140, 40), .7); mix.add(T_GATE - .25, E.whoosh(.35), .35)
@@ -470,11 +481,12 @@ def build(out_mp4, seed=1, ep=1, log=print, stills=None):
                     chains=[(vid_t(c["t1"]), c["n"]) for c in chains])
     E.render(out_mp4, wav, n, draw); os.remove(wav)
     ch_, de_, left = drama(sim); tw, tl = TEAMS[win], TEAMS[lose]
-    title = f"Dog Fort vs Cat Fort: Whose Core Cracks First? | Brick Siege #{ep}"
-    desc = ("Two forts, two cores, nonstop bouncing balls.\n\nThe dog fort sits on top, the cat fort on the bottom. Every ball smashes enemy bricks, "
+    a_n, b_n = TEAMS[0]["name"].title(), TEAMS[1]["name"].title()
+    title = f"{a_n} Fort vs {b_n} Fort: Whose Core Cracks First? | Brick Siege #{ep}"
+    desc = (f"Two forts, two cores, nonstop bouncing balls.\n\nThe {a_n.lower()} fort sits on top, the {b_n.lower()} fort on the bottom. Every ball smashes enemy bricks, "
             "bombs set off chain reactions and gold bricks split a ball in two. First core to hit zero loses its whole fort.\n\n"
-            "Team Dog or Team Cat? 👇\n\n#shorts #dogvscat #brickbreaker #chainreaction #satisfying")
-    return dict(title=title, description=desc, tags=["dog vs cat", "brick breaker", "chain reaction", "satisfying", "physics simulation", "fortress battle"],
+            f"Team {a_n} or Team {b_n}? 👇\n\n#shorts #{a_n.lower()}vs{b_n.lower()} #brickbreaker #chainreaction #satisfying")
+    return dict(title=title, description=desc, tags=[f"{a_n.lower()} vs {b_n.lower()}", "brick breaker", "chain reaction", "satisfying", "physics simulation", "fortress battle"],
                 duration=total, winner=TEAMS[win]["name"], loser=TEAMS[lose]["name"], winner_hp_left=left, lead_changes=ch_,
                 max_deficit_overcome=de_, final_hit_s=round(vf, 2), chain_reactions=len(chains), seed=seed, thumb_ms=int(T_GATE * 1000 - 400))
 
