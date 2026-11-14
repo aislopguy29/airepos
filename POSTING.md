@@ -38,3 +38,17 @@ The catch-up task retries the queue and deletes each file once it posts.
 - Per-platform copy: each target gets its own caption/title written for that platform.
   Never post byte-identical text to two platforms.
 - Follow VARIETY_RULES.md: new music style, new caption structure, unique content per post.
+
+## Keeping usage down
+Each slot runs a full cloud session, so the cost is in how much work a slot is told to do.
+- **s1 is the only slot allowed to invent a new video type.** Building a new style module (new
+  mechanic, new layout, preview iterations) is by far the most expensive thing in the pipeline,
+  so it happens once a day, not three times.
+- **s2 and s3 re-run existing style modules** with a fresh seed, next episode number and a new
+  theme/music mood. No new modules, no new mechanics.
+- **p1, p2 and p3 use the proven generators** (`puzzles/run.py`, `eyejump.html` + `eyeaudio.py`).
+  They vary parameters only — never edit the renderers in a slot run unless something is broken.
+- **One verification pass per slot.** p1 checks 5 frames (it is the YouTube post of the day);
+  every other slot checks 2-3 frames once and moves on. Do not re-render for taste.
+- **A failed read never costs a retry.** If Windsor get_data errors, skip that step and carry on.
+- The time-jitter task is off; slot times are fixed in distribution.json.
