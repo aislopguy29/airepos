@@ -1,3 +1,6 @@
 out/
 __pycache__/
 *.wav
+pv_*.jpg
+sheet.jpg
+p.jpg
