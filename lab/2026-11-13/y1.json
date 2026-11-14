@@ -1,0 +1,41 @@
+{
+ "id": "2026-11-13_y1",
+ "date": "2026-11-13",
+ "slot": "y1",
+ "kind": "new",
+ "platform": "youtube",
+ "style_id": "brick_siege",
+ "format": "1-vs-1 fortress breakout duel: mirrored brick forts top/bottom of a vertical grid arena, cores auto-fire balls that smash enemy bricks (steel 2 hits, bomb chain reactions, x2 split bricks), segmented core-HP bars above/below, slow-mo final hit, losing fort collapses in a chain reaction",
+ "topic": "Dog fort vs Cat fort",
+ "theme": "dog vs cat (cute animals, pick-your-side matchup)",
+ "viral_reason": "VARIETY_RULES rule 3 evergreen fallback: cute/funny animals + 'which side would you pick' matchup (no aislop/research/latest.md yet; own results only cover flag themes, and flags ran in the last 3 posts)",
+ "episode": 1,
+ "seed": 1,
+ "sim_seed": 14,
+ "music_style": "soft chiptune: 112 bpm pulse-wave arpeggios, triangle bass, chip drum kit, A mixolydian; brick-break blips pitched by fort depth; bed drops out for the slow-mo final hit, collapse cascade + bell chord on the card",
+ "caption_style": "one-sentence story",
+ "video": "lab/2026-11-13/y1.mp4",
+ "duration": 23.5,
+ "thumb_offset_ms": 1200,
+ "youtube": {
+  "title": "Dog Fort vs Cat Fort: Whose Core Cracks First? | Brick Siege #1",
+  "description": "A dog fort and a cat fort kept firing bouncing balls at each other until one core cracked and dragged its whole fort down with it.\n\nBombs set off chain reactions, gold bricks split a ball in two, and the lead flips more than once.\n\nTeam Dog or Team Cat? 👇\n\n#shorts #dogvscat #brickbreaker #chainreaction #satisfying #physics",
+  "tags": [
+   "dog vs cat",
+   "brick breaker",
+   "chain reaction",
+   "satisfying",
+   "physics simulation",
+   "fortress battle"
+  ]
+ },
+ "result": {
+  "winner": "DOG",
+  "loser": "CAT",
+  "winner_core_hp_left": 1,
+  "core_hp": 8,
+  "lead_changes": 3,
+  "chain_reactions": 1,
+  "final_hit_video_s": 17.99
+ }
+}
