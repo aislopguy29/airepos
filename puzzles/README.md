@@ -29,3 +29,12 @@ This account posts timed visual puzzles. No political or statistics content.
 - Bottom: "new puzzle every day" chip with a smaller "follow + like for more" chip under it.
 - Captions follow VARIETY_RULES.md: rotate structure and hashtags, keep similarity to the last 20
   captions under 50%, max 5 hashtags including #thatdatalover, no engagement bait beyond the score ask.
+
+## Caption tooling (vendored from instagram-agent-skill, MIT)
+`make.py` runs three tools from `vendor/ig-agent-skill/` on every caption:
+- `hookscore.py` scores 5 candidate opening lines on length, specificity, stakes, frontload and
+  address; the highest scorer becomes the hook. All candidates and scores are kept in the meta.
+- `humanize.py` strips em dashes, slop vocabulary and invisible watermark characters.
+- `caption.py` reports exactly what shows in the feed before "... more" (saved as `caption_first_125`).
+They are vendored, not installed as skills, because scheduled runs start from a fresh session with
+no plugins. If a tool is missing the pipeline falls back to the plain template, it never fails.

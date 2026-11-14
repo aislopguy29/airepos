@@ -1,7 +1,7 @@
 # usage: python3 -I puzzles/make.py <out_dir> <slot> [seed]
 # Generates a fresh daily "spot the odd one" puzzle: script json + caption json.
 # Anti-repeat: reads past puzzle jsons in the repo and avoids recent themes/diff sets.
-import sys, json, os, glob, random, hashlib, datetime
+import sys, json, os, glob, random, hashlib, datetime, subprocess, tempfile
 out_dir, slot = sys.argv[1], sys.argv[2]
 seed = int(sys.argv[3]) if len(sys.argv) > 3 else int(hashlib.sha1((out_dir+slot).encode()).hexdigest()[:8], 16)
 R = random.Random(seed)
@@ -63,12 +63,47 @@ script = {"title": title, "title2": f"IN {int(search)} SECONDS", "shape": shape,
           "search": search, "rounds": rounds}
 json.dump(script, open(os.path.join(out_dir, f"{slot}_script.json"), "w"), indent=1)
 HOOKS = [
- "Only 1 in 10 people get all {n}.",
- "{n} rounds. Most people miss the last one.",
+ "Only 1 in 10 people get all {n} of these.",
+ "{n} rounds, and almost nobody survives the last one.",
+ "You get {s} seconds. Miss one and you lose.",
+ "Round {n} is where everyone fails.",
+ "99% of people lose this on round 3.",
+ "Most people quit before round {n}.",
+ "Can you beat {s} seconds, {n} times in a row?",
+ "One of these is wrong. You have {s} seconds.",
  "Your eyes have {s} seconds per round.",
- "Round {n} breaks everyone.",
- "Think you're fast? Prove it.",
+ "Nobody gets all {n}. Prove me wrong.",
 ]
+VEND = os.path.join("vendor", "ig-agent-skill")
+def _tool(script, args, stdin_text=None):
+    """Run a vendored ig-agent-skill tool; return parsed JSON, or None if unavailable."""
+    path = os.path.join(VEND, script)
+    if not os.path.exists(path): return None
+    try:
+        r = subprocess.run(["python3", "-I", path] + args, capture_output=True, text=True,
+                           input=stdin_text, timeout=60)
+        if r.returncode != 0: return None
+        return json.loads(r.stdout)
+    except Exception:
+        return None
+def score_hook(line):
+    d = _tool("hookscore.py", ["--hook", line, "--json"])
+    if not d: return 0.0
+    rows = d if isinstance(d, list) else [d]
+    r = rows[0]
+    if "total" in r: return float(r["total"])
+    ch = r.get("checks", {})
+    return sum(float(v.get("score", 0)) for v in ch.values())/max(1, len(ch))
+def humanize(text):
+    d = _tool("humanize.py", ["-", "--json"], stdin_text=text)
+    return (d or {}).get("text", text), (d or {}).get("report", [])
+def lint_caption(text):
+    with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as f:
+        f.write(text); tmp = f.name
+    d = _tool("caption.py", [tmp, "--json"]) or {}
+    try: os.unlink(tmp)
+    except OSError: pass
+    return d
 CLOSERS = [
  "Drop your score below.",
  "Comment how many you spotted.",
@@ -82,11 +117,18 @@ TAGSETS = [
  ["#oddoneout","#braingame","#reactiontest","#challenge","#thatdatalover"],
 ]
 recent_caps = [p.get("caption","") for p in past[-5:]]
-hook = R.choice(HOOKS).format(n=nrounds, s=search)
+cands = [h.format(n=nrounds, s=search) for h in R.sample(HOOKS, min(5, len(HOOKS)))]
+scored = sorted(((score_hook(c), c) for c in cands), reverse=True)
+hook_score, hook = scored[0]
 closer = R.choice(CLOSERS)
 tags = R.choice([t for t in TAGSETS if " ".join(t) not in " ".join(recent_caps)] or TAGSETS)
-caption = f"{hook}\n\n{title.title()} — {nrounds} rounds, {search}s each, harder every time.\n\n{closer}\n\n" + " ".join(tags)
-meta = {"slot": slot, "title": title, "shape": shape, "palette": palname,
+caption = f"{hook}\n\n{title.title()}: {nrounds} rounds, {search}s each, harder every time.\n\n{closer}\n\n" + " ".join(tags)
+caption, human_report = humanize(caption)
+lint = lint_caption(caption)
+meta = {"slot": slot, "title": title, "hook": hook, "hook_score": round(hook_score, 1),
+        "hook_candidates": [[round(sc,1), c] for sc, c in scored],
+        "humanized": human_report,
+        "caption_first_125": lint.get("visible") or caption[:125], "shape": shape, "palette": palname,
         "diff_ids": [d[0] for d in picked], "rounds": nrounds, "search": search,
         "seed": seed, "caption": caption, "caption_style": "hook+format+score CTA",
         "music_style": "slop_brainrot", "theme": f"{shape} faces / {palname}",
