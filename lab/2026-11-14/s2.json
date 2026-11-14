@@ -35,5 +35,24 @@
   "final_hit_s": 18.94,
   "chain_reactions": 1
  },
- "posted": []
+ "posted": [
+  "ig_easydata",
+  "facebook"
+ ],
+ "media_id": "18007941602795518",
+ "post_details": {
+  "ig_easydata": {
+   "tool": "windsor",
+   "media_id": "18007941602795518",
+   "comment_id": "17946273783369489",
+   "at": "2026-11-14T15:55-05:00"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "id": 428345877,
+   "uuid": "-7803198647551508354",
+   "scheduled": "2026-11-14T16:05:00-05:00",
+   "status": "PENDING"
+  }
+ }
 }
