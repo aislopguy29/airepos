@@ -1,0 +1,57 @@
+{
+ "id": "2026-11-14_1",
+ "date": "2026-11-14",
+ "slot": 1,
+ "kind": "new",
+ "style_id": "stack_race",
+ "format": "food tower stacking race: 4 side-by-side lanes on a diner counter, cranes drop one layer at a time, off-center layers tip everything above via a centre-of-mass rule (TIMBER collapses), live layer counters + leader glow, slow-mo final layer, ranked result card",
+ "topic": "Pancakes vs Burgers vs Donuts vs Sushi",
+ "theme": "pancakes vs burgers vs donuts vs sushi (food showdown, pick-your-side stacking race)",
+ "viral_reason": "VARIETY_RULES rule 3 evergreen fallback: food showdown + satisfying stacking/toppling with a pick-your-side hook (no aislop/research/latest.md in the Project; Windsor own-results read unavailable this run: no instagram accounts configured)",
+ "episode": 1,
+ "seed": 1,
+ "sim_seed": 271,
+ "music_style": "jazzy diner swing: 116 bpm walking pluck bass, brushed kit, FM e-piano stabs, F dorian; kalimba clinks climb the scale with each layer, slide-down + thumps on collapses; drums drop out for the slow-mo final layer",
+ "caption_style": "number-first hook",
+ "video": "lab/2026-11-14/1.mp4",
+ "duration": 22.96,
+ "thumb_offset_ms": 1500,
+ "caption": "20 layers up, one finish line, and a single wobble can wipe out half a tower.\n\nPancakes, burgers, donuts and sushi all stack at once. Land a layer off-center and everything above it slides off. The last two seconds get messy.\n\nWhich stack were you rooting for?\n\n#stackrace #foodbattle #oddlysatisfying #physicsgame #pickyourside",
+ "comment": "Which food deserves the rematch, and what should be the fifth stack in Race #2?",
+ "youtube": {
+  "title": "Pancakes vs Burgers vs Donuts vs Sushi: First Stack to the Top | Stack Race #1",
+  "description": "Four food towers, one finish line 20 layers up. A crane drops one layer at a time, and anything that lands off-centre can drag the top of the tower down with it.\n\nWhich stack did you pick? \ud83d\udc47\n\n#shorts #stackrace #foodbattle #satisfying #physics",
+  "tags": [
+   "stack race",
+   "food battle",
+   "pancakes vs burgers",
+   "satisfying",
+   "physics simulation",
+   "tower stacking"
+  ]
+ },
+ "result": {
+  "winner": "PANCAKES",
+  "ranking": [
+   "PANCAKES",
+   "SUSHI",
+   "DONUTS",
+   "BURGERS"
+  ],
+  "final_heights": {
+   "PANCAKES": 20,
+   "BURGERS": 12,
+   "DONUTS": 16,
+   "SUSHI": 18
+  },
+  "goal_layers": 20,
+  "lead_changes": 5,
+  "big_collapses": 2,
+  "collapses": 6,
+  "winner_max_deficit": 4,
+  "slowmo_video_s": [
+   16.13,
+   18.08
+  ]
+ }
+}
