@@ -1,0 +1,37 @@
+{
+ "id": "2026-11-15_s2",
+ "date": "2026-11-15",
+ "slot": "s2",
+ "kind": "rerun",
+ "style_id": "snake_duel",
+ "format": "1-vs-1 snake race on a neon 20x22 grid: two snakes hunt the same orbs (+1), a mid-race star is +4, any crash = BONK, lose 40% of your length and the tail spills as crumbs the rival can eat; first to 30 long wins. Top title + live status line, two race-lane progress bars at the bottom, slow-mo final bite, winner card, loop blend",
+ "theme": "fire vs ice (elemental pick-a-side 1-vs-1 matchup: favorite with a head start vs the patient underdog; the module's fixed cast, a different family from s1's cute animals)",
+ "viral_reason": "VARIETY_RULES rule 2 own results (eas.ydata 1-vs-1 'X vs Y' matchups far out-viewed multi-entrant races in the 11-14 Windsor read) + rule 3 evergreen 'which side would you pick' / underdog-vs-favorite matchup; snake_duel takes no cast parameter, so the rerun keeps fire vs ice with a fresh seed. No aislop/research/latest.md trend doc in the project.",
+ "episode": 2,
+ "seed": 1592,
+ "seed_search_start": 1515,
+ "music_style": "synthwave: 108 bpm B minor, detuned saw pads, saw eighth-note bass, 808 kit (the module's built-in bed; differs from s1's glitch/IDM today); fire bites = warm plucks, ice bites = glass bells, crash thumps + slide-downs, riser into the slow-mo final bite, saw fanfare + bell chord on the card",
+ "caption_style": "one-sentence story",
+ "caption": "Round two, and the snake with the head start is sweating already.\n\nSame neon grid, brand-new board. Every glowing orb adds a segment, the gold star adds four, and one wrong turn into a wall chops off a chunk of tail that the other snake gets to gobble up.\n\nFire with the early lead, or ice with the patience? Lock in your pick before the first bite.\n\n#snakegame #elementbattle #neonarcade #rematch #fireandice",
+ "captions_by_target": {
+  "ig_easydata": "Round two, and the snake with the head start is sweating already.\n\nSame neon grid, brand-new board. Every glowing orb adds a segment, the gold star adds four, and one wrong turn into a wall chops off a chunk of tail that the other snake gets to gobble up.\n\nFire with the early lead, or ice with the patience? Lock in your pick before the first bite.\n\n#snakegame #elementbattle #neonarcade #rematch #fireandice",
+  "facebook": "Two neon snakes, one made of flame and one made of frost, chase the same glowing orbs until somebody reaches 30. Which one had your vote after the first wall crash?"
+ },
+ "facebook_title": "Fire vs Ice: Snake Duel Rematch",
+ "comment": "What if the gold star never showed up next time? Would that tilt things toward fire or toward ice?",
+ "thumb_offset_ms": 900,
+ "video": "lab/2026-11-15/s2.mp4",
+ "duration": 24.73,
+ "result": {
+  "winner": "ICE",
+  "loser": "FIRE",
+  "final_score": [
+   25,
+   30
+  ],
+  "lead_changes": 5,
+  "crashes": 3,
+  "comeback_deficit": 6
+ },
+ "posted": []
+}
