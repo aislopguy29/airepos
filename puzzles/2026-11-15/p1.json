@@ -1,0 +1,74 @@
+{
+ "slot": "p1",
+ "title": "ONLY 1% CAN SPOT IT",
+ "hook": "Can you beat 2.9 seconds, 5 times in a row?",
+ "hook_score": 94.0,
+ "hook_candidates": [
+  [
+   94.0,
+   "Can you beat 2.9 seconds, 5 times in a row?"
+  ],
+  [
+   88.0,
+   "You get 2.9 seconds. Miss one and you lose."
+  ],
+  [
+   81.0,
+   "99% of people lose this on round 3."
+  ],
+  [
+   76.0,
+   "5 rounds, and almost nobody survives the last one."
+  ],
+  [
+   73.0,
+   "Your eyes have 2.9 seconds per round."
+  ]
+ ],
+ "humanized": {
+  "invisible": [],
+  "typographic": [
+   {
+    "name": "\u2014 EM DASH",
+    "count": 1,
+    "to": ","
+   }
+  ],
+  "lexical": [],
+  "structures": [
+   {
+    "name": "Hashtag wall (5+)",
+    "count": 1,
+    "fix": "Three hashtags. LinkedIn stopped rewarding the wall."
+   },
+   {
+    "name": "Uniform sentence length (variation 0.23)",
+    "count": 6,
+    "fix": "Break one sentence in half. Let another run long. Machines write even."
+   }
+  ]
+ },
+ "caption_first_125": "Can you beat 2.9 seconds, 5 times in a row?\n\nOnly 1% Can Spot It: 5 rounds, 2.9s each, harder every time.\n\nTell me your score",
+ "shape": "square",
+ "palette": "sorbet",
+ "diff_ids": [
+  "frown",
+  "c_tilt",
+  "flat",
+  "wink",
+  "eye"
+ ],
+ "rounds": 5,
+ "search": 2.9,
+ "seed": 3740561998,
+ "caption": "Can you beat 2.9 seconds, 5 times in a row?\n\nOnly 1% Can Spot It: 5 rounds, 2.9s each, harder every time.\n\nTell me your score, be honest.\n\n#spotit #attentiontest #quiz #focus #thatdatalover\n",
+ "caption_style": "hook+format+score CTA",
+ "music_style": "slop_brainrot",
+ "theme": "square faces / sorbet",
+ "viral_reason": "timed spot-the-difference with retention hooks",
+ "thumb_offset_ms": 900,
+ "created": "2026-11-15",
+ "video": "puzzles/2026-11-15/p1.mp4",
+ "duration": 29.5,
+ "size_mb": 23.37
+}

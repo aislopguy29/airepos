@@ -1,0 +1,95 @@
+{
+ "title": "ONLY 1% CAN SPOT IT",
+ "title2": "IN 2 SECONDS",
+ "shape": "square",
+ "sub": "5 levels \u00b7 speed test",
+ "footer": "new puzzle every day",
+ "search": 2.9,
+ "rounds": [
+  {
+   "cols": 4,
+   "rows": 6,
+   "odd": [
+    1,
+    3
+   ],
+   "prompt": "ONE IS NOT SMILING",
+   "diff": {
+    "frown": true
+   },
+   "col": "#ff9ec4",
+   "shape": "square"
+  },
+  {
+   "cols": 5,
+   "rows": 7,
+   "mode": "count",
+   "targets": [
+    [
+     2,
+     0
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     0,
+     6
+    ]
+   ],
+   "odd": [
+    2,
+    0
+   ],
+   "prompt": "HOW MANY ARE UPSIDE DOWN?",
+   "diff": {
+    "tilt": true
+   },
+   "col": "#8ee6c8",
+   "shape": "square"
+  },
+  {
+   "cols": 6,
+   "rows": 8,
+   "odd": [
+    4,
+    7
+   ],
+   "prompt": "ONE HAS A STRAIGHT MOUTH",
+   "diff": {
+    "flat": true
+   },
+   "col": "#ffd98a",
+   "shape": "square"
+  },
+  {
+   "cols": 7,
+   "rows": 9,
+   "odd": [
+    3,
+    5
+   ],
+   "prompt": "ONE IS WINKING",
+   "diff": {
+    "wink": true
+   },
+   "col": "#9fd4ff",
+   "shape": "square"
+  },
+  {
+   "cols": 8,
+   "rows": 10,
+   "odd": [
+    7,
+    8
+   ],
+   "prompt": "ONE HAS A TINY EYE",
+   "diff": {
+    "eye": true
+   },
+   "col": "#c6b3ff",
+   "shape": "square"
+  }
+ ]
+}
