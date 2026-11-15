@@ -1,0 +1,50 @@
+{
+ "id": "2026-11-14_s3",
+ "date": "2026-11-14",
+ "slot": "s3",
+ "kind": "encore",
+ "parent": "2026-11-13_1",
+ "style_id": "flag_drop",
+ "format": "marble race down a tall peg/ramp/bumper course, camera follows leader, live order strip, photo finish, podium",
+ "theme": "8 country flags marble race (country matchups: this account's strongest-reaching theme family; not used by s1 fire vs ice or s2 shark vs octopus today)",
+ "viral_reason": "VARIETY_RULES rule 2 own results: Windsor last_30dT for eas.ydata, scored (views + 20*likes + 50*comments)/hours since posting; excluding today's s1 snake_duel and s2 brick_siege, flag_drop Race #1 ranks first among lab styles (~7.4/h vs maze_rush ~6.8 and sumo_island ~5.8; stack_race never reached Instagram), and country-themed posts are the account's top reach. Encore of the best-performing eligible style.",
+ "episode": 2,
+ "seed": 2026,
+ "sim_seed": 2055,
+ "cast": [
+  "BRAZIL",
+  "ITALY",
+  "CANADA",
+  "INDIA",
+  "USA",
+  "SWEDEN",
+  "EGYPT",
+  "UK"
+ ],
+ "music_style": "marimba/pizzicato: 124 bpm C major marimba arpeggios over C-Am-F-G with sub bass and a light rim/hat kit locked to the gate pulse, thickening as the race goes on; kalimba peg plinks in C pentatonic, bell bumpers, riser into the photo finish, kalimba + bell fanfare and a soft pad on the podium (module unchanged; mood bed added by the s3 runner)",
+ "caption_style": "cliffhanger",
+ "caption": "Flag Drop · Race #2\n\nEight flags wait behind the gate. Three seconds, then gravity takes over.\n\nBrazil, Italy, Canada, India, USA, Sweden, Egypt and the UK bounce through pegs, ramps and bumpers while the lead keeps flipping, and the bottom of the course comes down to a photo finish.\n\nWhich flag were you riding with when the gate dropped?\n\n#flagdrop #marblerace #countryflags #photofinish #marblerun",
+ "captions_by_target": {
+  "ig_easydata": "Flag Drop · Race #2\n\nEight flags wait behind the gate. Three seconds, then gravity takes over.\n\nBrazil, Italy, Canada, India, USA, Sweden, Egypt and the UK bounce through pegs, ramps and bumpers while the lead keeps flipping, and the bottom of the course comes down to a photo finish.\n\nWhich flag were you riding with when the gate dropped?\n\n#flagdrop #marblerace #countryflags #photofinish #marblerun",
+  "tiktok": "Pick your flag before the gate drops, because this one ends in a photo finish. #marblerace #countryflags #photofinish",
+  "facebook": "Eight country flags tumble down a glowing peg course and the race to the bottom ends in a photo finish, so which one were you cheering for?"
+ },
+ "facebook_title": "Flag Drop: Race #2",
+ "tiktok_title": "Flag Drop · Race #2",
+ "comment": "Swap one flag out for Race #3: which country should get the open spot?",
+ "thumb_offset_ms": 1200,
+ "video": "lab/2026-11-14/s3.mp4",
+ "duration": 23.35,
+ "result": {
+  "winner": "UK",
+  "podium": [
+   "UK",
+   "INDIA",
+   "USA"
+  ],
+  "winner_time_s": 16.2,
+  "photo_finish_gap_s": 0.15,
+  "lead_changes": 8
+ },
+ "posted": []
+}
