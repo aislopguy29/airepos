@@ -253,6 +253,7 @@ MOODS = {
     "cinematic":  dict(bpm=72,  scale="harmonic_minor", root=45, prog=[0, 5, 3, 4], timbre="saw", comp="pad", bass="drone",  kit="taiko", swing=.5),
     "jazzy":      dict(bpm=110, scale="dorian",  root=48, prog=[1, 4, 0, 5], timbre="epiano",  comp="stabs", bass="walk",    kit="brush", swing=.64),
     "dark_pulse": dict(bpm=124, scale="phrygian", root=45, prog=[0, 1, 0, 6], timbre="saw",    comp="pad",   bass="eighths", kit="808",   swing=.5),
+    "glitch":     dict(bpm=122, scale="lydian",  root=50, prog=[0, 4, 5, 1], timbre="pluck",   comp="arp",   bass="sub",     kit="glitch", swing=.5),
 }
 class Mix:
     def __init__(self, dur, mood=None, scale=None, bpm=None, timbre=None, root=None):
@@ -336,6 +337,12 @@ class Mix:
                     if I > .6: self.add(t + beat / 4, hat(.03, k8 + b_ + 50), gain * .15)
                 elif kit == "taiko":
                     if k8 in (0, 3, 6): self.add(t, thump(.6, 90, 34), gain * .8)
+                elif kit == "glitch":                                   # gentle glitch/IDM: clicky kick, rim, stutter-tick bursts
+                    if k8 in (0, 3) or (k8 == 6 and I > .55): self.add(t, thump(.22, 150, 46), gain * .6)
+                    if k8 in (2, 6): self.add(t, rim(), gain * .4); self.add(t, hat(.025, k8 + b_ * 8 + 300), gain * .22)
+                    self.add(t, tick(5200 + 900 * (k8 % 3), .025), gain * .09)
+                    if rng.random() < .2 + .35 * I:
+                        for j in range(3): self.add(t + beat / 8 * j, tick(7000 - 900 * j, .018), gain * .1 * (1 - j * .25))
 
     def add(self, t, sig, gain=1.0, pan=0.0):
         i = int(round(t * SR))

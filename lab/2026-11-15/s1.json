@@ -1,0 +1,42 @@
+{
+ "id": "2026-11-15_s1",
+ "date": "2026-11-15",
+ "slot": "s1",
+ "kind": "new",
+ "style_id": "moon_hop",
+ "format": "1-vs-1 sky-hop race to the moon: split-screen towers, each animal auto-bounces up its own lane of floating platforms (clouds low, asteroid rocks in space) toward the highest one it can reach; springs = super jump, cracked platforms crumble, misjudged hops = free-fall to a lower platform. Per-lane cameras so each lane's sky (day -> sunset -> dusk -> space) shows its height, centre altitude ladder, live height + LEAD chip HUD, slow-mo final leap, winner card, loop blend",
+ "topic": "Kangaroo vs Frog",
+ "theme": "kangaroo vs frog (cute-animal 'who's the better jumper' 1-vs-1 matchup: big favorite vs small underdog, race to the moon)",
+ "viral_reason": "VARIETY_RULES rule 2 own results: Windsor last_30dT for eas.ydata shows 1-vs-1 'X vs Y' matchups and country races on top (Country Clash ~1.4-1.6k views, Flag Drop #2 ~1.26k), and the animal 'who would win' matchup (shark vs octopus, 641 views) as the best non-country family; s3 yesterday was countries, so this is an animal head-to-head race. Rule 3 support: cute animals + underdog-vs-giant, instantly readable stakes. No aislop/research/latest.md in the Project.",
+ "episode": 1,
+ "seed": 1115,
+ "sim_seed": 1120,
+ "music_style": "gentle glitch/IDM: 122 bpm D lydian, pluck arpeggios over a sub bass, clicky kick + rim with stutter-tick bursts (new engine 'glitch' mood); boing hops pitched up a pentatonic ladder by height (kangaroo low, frog high, panned to their lanes), spring boings + bell, crack bursts, slide-down misses, bell sparkle on lead changes; drums drop out for the slow-mo final leap, moon bell chord + pluck fanfare on the card",
+ "caption_style": "question-first",
+ "caption": "Big jumps or quick feet: who reaches the moon first?\n\nKangaroo and Frog each bounce up their own tower of clouds and space rocks. Springs fling you sky-high, cracked platforms crumble underfoot, and one bad hop sends you tumbling back down. The lead flips six times before the final leap.\n\nAre you riding with the kangaroo or the frog?\n\n#kangaroo #frog #animalrace #tothemoon #simulation",
+ "captions_by_target": {
+  "ig_easydata": "Big jumps or quick feet: who reaches the moon first?\n\nKangaroo and Frog each bounce up their own tower of clouds and space rocks. Springs fling you sky-high, cracked platforms crumble underfoot, and one bad hop sends you tumbling back down. The lead flips six times before the final leap.\n\nAre you riding with the kangaroo or the frog?\n\n#kangaroo #frog #animalrace #tothemoon #simulation",
+  "tiktok": "Kangaroo has the big jumps, frog has the quick feet, and only one touches the moon first. #kangaroo #frog #animalrace",
+  "facebook": "A kangaroo and a frog hop up two towers of clouds and space rocks, and the first one to touch the moon wins. Who were you cheering for by the last jump?"
+ },
+ "tiktok_title": "Kangaroo vs Frog: race to the moon",
+ "comment": "Rematch idea: same towers, but the frog gets the kangaroo's big jumps. Does it still win?",
+ "thumb_offset_ms": 600,
+ "video": "lab/2026-11-15/s1.mp4",
+ "duration": 26.53,
+ "result": {
+  "winner": "FROG",
+  "loser": "KANGAROO",
+  "loser_behind_s": 0.6,
+  "loser_short_m_at_touch": 37,
+  "t_win_sim_s": 19.32,
+  "lead_changes": 6,
+  "springs": 6,
+  "cracks": 1,
+  "misses": 9,
+  "slowmo_video_s": [
+   18.57,
+   21.74
+  ]
+ }
+}
