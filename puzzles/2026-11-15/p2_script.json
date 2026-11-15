@@ -1,0 +1,17 @@
+{
+ "title": "FOLLOW THE DOT",
+ "title2": "HEAD STAYS STILL",
+ "sub": "6 stages · 120 to 380 BPM",
+ "footer": "",
+ "intro": 0.9,
+ "label_beat": 0.55,
+ "pos_seed": 456,
+ "levels": [
+  {"bpm": 120, "jumps": 8,  "pattern": "ud",     "label": "STAGE 1: UP, DOWN"},
+  {"bpm": 175, "jumps": 10, "pattern": "circle", "label": "ROUND AND ROUND"},
+  {"bpm": 225, "jumps": 13, "pattern": "lr",     "label": "LEFT. RIGHT. LEFT."},
+  {"bpm": 280, "jumps": 15, "pattern": "random", "label": "NO WARNING NOW"},
+  {"bpm": 330, "jumps": 18, "pattern": "diag",   "label": "CORNER TO CORNER"},
+  {"bpm": 380, "jumps": 21, "pattern": "random", "label": "380 BPM. GOOD LUCK"}
+ ]
+}

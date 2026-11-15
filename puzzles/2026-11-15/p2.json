@@ -1,0 +1,55 @@
+{
+ "slot": "p2",
+ "format": "eyejump",
+ "title": "FOLLOW THE DOT / HEAD STAYS STILL",
+ "hook": "Keep your head still and chase this dot up to 380 BPM.",
+ "hook_score": 81.4,
+ "hook_candidates": [
+  [
+   81.4,
+   "Keep your head still and chase this dot up to 380 BPM."
+  ],
+  [
+   58.4,
+   "380 BPM is the final stage. How far do your eyes get?"
+  ],
+  [
+   56.0,
+   "Most eyes drop this dot somewhere before 380 BPM."
+  ]
+ ],
+ "levels": 6,
+ "jumps": 85,
+ "unique_sounds": 85,
+ "patterns": [
+  "ud",
+  "circle",
+  "lr",
+  "random",
+  "diag",
+  "random"
+ ],
+ "bpm": [
+  120,
+  175,
+  225,
+  280,
+  330,
+  380
+ ],
+ "pos_seed": 456,
+ "audio_seed": 91733,
+ "caption": "Keep your head still and chase this dot up to 380 BPM.\n\nSix stages. It starts at a calm 120 and keeps climbing until the dot is flicking corner to corner faster than you can blink. Eyes move, head doesn't.\n\nComment the level you lost it.\n\n#eyetracking #reactiontime #focustest #thatdatalover\n",
+ "captions_by_target": {
+  "ig_thatdatalover": "Keep your head still and chase this dot up to 380 BPM.\n\nSix stages. It starts at a calm 120 and keeps climbing until the dot is flicking corner to corner faster than you can blink. Eyes move, head doesn't.\n\nComment the level you lost it.\n\n#eyetracking #reactiontime #focustest #thatdatalover\n",
+  "tiktok": "how many stages before the dot wins? #eyetest #reactiontime #focus",
+  "facebook": "A dot that jumps faster every stage, from 120 up to 380 BPM, so see how far you get without moving your head."
+ },
+ "caption_style": "instruction hook + stage-ramp format line + level CTA",
+ "music_style": "no-repeat voice bank (pentatonic per-jump timbres), loudnorm -14 LUFS",
+ "theme": "eye jump drill: vertical-start, circle-second ordering",
+ "thumb_offset_ms": 600,
+ "video": "puzzles/2026-11-15/p2.mp4",
+ "duration": 28.5,
+ "posted": {}
+}
