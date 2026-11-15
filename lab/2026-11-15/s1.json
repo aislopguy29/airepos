@@ -38,5 +38,33 @@
    18.57,
    21.74
   ]
+ },
+ "posted": [
+  "ig_easydata",
+  "facebook",
+  "tiktok"
+ ],
+ "media_id": "18651558370059936",
+ "post_details": {
+  "ig_easydata": {
+   "tool": "windsor",
+   "media_id": "18651558370059936",
+   "comment_id": "18065217881530390",
+   "at": "2026-11-15T11:54-05:00"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "id": 429060291,
+   "uuid": "1264583776171347950",
+   "scheduled": "2026-11-15T12:05:00-05:00",
+   "status": "PENDING"
+  },
+  "tiktok": {
+   "tool": "metricool",
+   "id": 429060309,
+   "uuid": "8011056423181043493",
+   "scheduled": "2026-11-15T12:05:00-05:00",
+   "status": "PENDING"
+  }
  }
 }
