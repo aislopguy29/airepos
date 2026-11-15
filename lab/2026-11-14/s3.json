@@ -46,5 +46,32 @@
   "photo_finish_gap_s": 0.15,
   "lead_changes": 8
  },
- "posted": []
+ "posted": [
+  "ig_easydata",
+  "facebook",
+  "tiktok"
+ ],
+ "media_id": "18196851268395754",
+ "post_details": {
+  "ig_easydata": {
+   "tool": "windsor",
+   "media_id": "18196851268395754",
+   "comment_id": "18028464233870023",
+   "at": "2026-11-14T20:43-05:00"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "id": 428513510,
+   "uuid": "-1087771361871638554",
+   "scheduled": "2026-11-14T20:54:00-05:00",
+   "status": "PENDING"
+  },
+  "tiktok": {
+   "tool": "metricool",
+   "id": 428513516,
+   "uuid": "-6042832218408729705",
+   "scheduled": "2026-11-14T20:54:00-05:00",
+   "status": "PENDING"
+  }
+ }
 }
