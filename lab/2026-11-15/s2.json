@@ -33,5 +33,24 @@
   "crashes": 3,
   "comeback_deficit": 6
  },
- "posted": []
+ "posted": [
+  "ig_easydata",
+  "facebook"
+ ],
+ "media_id": "17915114127488586",
+ "post_details": {
+  "ig_easydata": {
+   "tool": "windsor",
+   "media_id": "17915114127488586",
+   "comment_id": "17941007703402937",
+   "at": "2026-11-15T16:02-05:00"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "id": 429289176,
+   "uuid": "-7546744615421917908",
+   "scheduled": "2026-11-15T16:13:00-05:00",
+   "status": "PENDING"
+  }
+ }
 }
