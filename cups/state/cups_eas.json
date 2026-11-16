@@ -1,15 +1,18 @@
 {
- "episode": 2,
+ "episode": 3,
  "answers": {
   "1": 6,
-  "2": 7
+  "2": 7,
+  "3": 7
  },
  "palettes": [
   "coral",
-  "plum"
+  "plum",
+  "cherry"
  ],
  "hooks": [
   5,
-  6
+  6,
+  3
  ]
 }
