@@ -1,0 +1,67 @@
+{
+ "slot": "p3",
+ "title": "FIND THE ODD ONE",
+ "hook": "One of these is wrong. You have 2.7 seconds.",
+ "hook_score": 82.0,
+ "hook_candidates": [
+  [
+   82.0,
+   "One of these is wrong. You have 2.7 seconds."
+  ],
+  [
+   82.0,
+   "Most people quit before round 4."
+  ],
+  [
+   81.0,
+   "Only 1 in 10 people get all 4 of these."
+  ],
+  [
+   73.0,
+   "Your eyes have 2.7 seconds per round."
+  ],
+  [
+   66.0,
+   "Round 4 is where everyone fails."
+  ]
+ ],
+ "humanized": {
+  "invisible": [],
+  "typographic": [],
+  "lexical": [],
+  "structures": [
+   {
+    "name": "Hashtag wall (5+)",
+    "count": 1,
+    "fix": "Three hashtags. LinkedIn stopped rewarding the wall."
+   },
+   {
+    "name": "Uniform sentence length (variation 0.23)",
+    "count": 6,
+    "fix": "Break one sentence in half. Let another run long. Machines write even."
+   }
+  ]
+ },
+ "caption_first_125": "One of these is wrong. You have 2.7 seconds.\n\nFind The Odd One: 4 rounds, 2.7s each, harder every time.\n\nHow many did you get",
+ "shape": "star",
+ "palette": "sorbet",
+ "diff_ids": [
+  "tilt",
+  "c_tilt",
+  "flat",
+  "extra"
+ ],
+ "rounds": 4,
+ "search": 2.7,
+ "seed": 4196752197,
+ "caption": "One of these is wrong. You have 2.7 seconds.\n\nFind The Odd One: 4 rounds, 2.7s each, harder every time.\n\nHow many did you get?\n\n#spotit #attentiontest #quiz #focus #thatdatalover\n",
+ "caption_style": "hook+format+score CTA",
+ "music_style": "slop_brainrot",
+ "theme": "star faces / sorbet",
+ "viral_reason": "timed spot-the-difference with retention hooks",
+ "thumb_offset_ms": 900,
+ "created": "2026-11-15",
+ "video": "puzzles/2026-11-15/p3.mp4",
+ "duration": 23.9,
+ "size_mb": 19.37
+}

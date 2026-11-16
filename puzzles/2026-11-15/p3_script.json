@@ -1,0 +1,81 @@
+{
+ "title": "FIND THE ODD ONE",
+ "title2": "IN 2 SECONDS",
+ "shape": "star",
+ "sub": "4 rounds \u00b7 harder each time",
+ "footer": "new puzzle every day",
+ "search": 2.7,
+ "rounds": [
+  {
+   "cols": 4,
+   "rows": 6,
+   "odd": [
+    1,
+    1
+   ],
+   "prompt": "ONE IS UPSIDE DOWN",
+   "diff": {
+    "tilt": true
+   },
+   "col": "#ff9ec4",
+   "shape": "star"
+  },
+  {
+   "cols": 5,
+   "rows": 7,
+   "mode": "count",
+   "targets": [
+    [
+     4,
+     2
+    ],
+    [
+     0,
+     6
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "odd": [
+    4,
+    2
+   ],
+   "prompt": "HOW MANY ARE UPSIDE DOWN?",
+   "diff": {
+    "tilt": true
+   },
+   "col": "#8ee6c8",
+   "shape": "star"
+  },
+  {
+   "cols": 6,
+   "rows": 8,
+   "odd": [
+    4,
+    2
+   ],
+   "prompt": "ONE HAS A STRAIGHT MOUTH",
+   "diff": {
+    "flat": true
+   },
+   "col": "#ffd98a",
+   "shape": "star"
+  },
+  {
+   "cols": 7,
+   "rows": 9,
+   "odd": [
+    6,
+    7
+   ],
+   "prompt": "ONE HAS A NOSE",
+   "diff": {
+    "extra": true
+   },
+   "col": "#9fd4ff",
+   "shape": "star"
+  }
+ ]
+}
