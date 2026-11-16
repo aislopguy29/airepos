@@ -1,12 +1,15 @@
 {
- "episode": 1,
+ "episode": 2,
  "answers": {
-  "1": 13
+  "1": 13,
+  "2": 16
  },
  "palettes": [
-  "sunflower"
+  "sunflower",
+  "cobalt"
  ],
  "hooks": [
-  11
+  11,
+  0
  ]
 }
