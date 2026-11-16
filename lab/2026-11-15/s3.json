@@ -43,5 +43,32 @@
    "AUSTRALIA"
   ]
  },
- "posted": []
+ "posted": [
+  "ig_easydata",
+  "facebook",
+  "tiktok"
+ ],
+ "media_id": "18187132858427845",
+ "post_details": {
+  "ig_easydata": {
+   "tool": "windsor",
+   "media_id": "18187132858427845",
+   "comment_id": "17890328082485814",
+   "at": "2026-11-15T20:44-05:00"
+  },
+  "facebook": {
+   "tool": "metricool",
+   "id": 429488671,
+   "uuid": "9000088537750913835",
+   "scheduled": "2026-11-15T20:54:00-05:00",
+   "status": "PENDING"
+  },
+  "tiktok": {
+   "tool": "metricool",
+   "id": 429488674,
+   "uuid": "971270947659927532",
+   "scheduled": "2026-11-15T20:54:00-05:00",
+   "status": "PENDING"
+  }
+ }
 }
