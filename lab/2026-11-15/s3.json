@@ -1,0 +1,47 @@
+{
+ "id": "2026-11-15_s3",
+ "date": "2026-11-15",
+ "slot": "s3",
+ "kind": "encore",
+ "parent": "2026-11-13_1",
+ "style_id": "flag_drop",
+ "format": "marble race down a tall peg/ramp/bumper course, camera follows leader, live order strip, photo finish, podium",
+ "theme": "8 country flags marble race, 7 of 8 flags new to the series (country matchups: this account's strongest-reaching theme family; not used by s1 kangaroo vs frog or s2 fire vs ice today)",
+ "viral_reason": "VARIETY_RULES rule 2 own results: Windsor last_30dT for eas.ydata scored (views + 20*likes + 50*comments)/hours since posting; snake_duel (~233/h) and moon_hop (~154/h) rank top but are today's s2 and s1, so flag_drop Race #2 (~61/h, 1265 views) is the best remaining lab style, ahead of brick_siege (~27/h). Country/flag posts are also the account's top non-lab reach. No aislop/research/latest.md trend doc.",
+ "episode": 3,
+ "seed": 1187,
+ "sim_seed": 1206,
+ "cast": [
+  "ARGENTINA",
+  "UK",
+  "FRANCE",
+  "AUSTRALIA",
+  "MEXICO",
+  "KOREA",
+  "SPAIN",
+  "JAPAN"
+ ],
+ "music_style": "dark pulse: 124 bpm E phrygian (C-major pitch set so the module's C-pentatonic kalimba plinks sit in key), saw pad over saw eighth-note bass and an 808 kit locked to the gate pulse, thickening toward the finish; drums drop out for the slow-mo photo finish; module's bell bumpers, riser and kalimba + bell podium fanfare on top (module unchanged; mood bed added by the s3 runner via engine Mix mood preset)",
+ "caption_style": "number-first hook",
+ "caption": "8 flags, 1 gate, 0 second chances. Flag Drop · Race #3 is live.\n\nArgentina, the UK, France, Australia, Mexico, Korea, Spain and Japan tumble through pegs, zigzag ramps and glowing bumpers. Only the UK has raced this course before, the lead keeps trading hands on the way down, and the bottom line gets settled in slow motion.\n\nEarly leader or late charger: which flag has your back?\n\n#marblerace #worldflags #flagrace #gravityrace #physicsfun",
+ "captions_by_target": {
+  "ig_easydata": "8 flags, 1 gate, 0 second chances. Flag Drop · Race #3 is live.\n\nArgentina, the UK, France, Australia, Mexico, Korea, Spain and Japan tumble through pegs, zigzag ramps and glowing bumpers. Only the UK has raced this course before, the lead keeps trading hands on the way down, and the bottom line gets settled in slow motion.\n\nEarly leader or late charger: which flag has your back?\n\n#marblerace #worldflags #flagrace #gravityrace #physicsfun",
+  "tiktok": "Eight countries, one glowing chute, zero do-overs. Who's your pick? #flagrace #marbles #countries",
+  "facebook": "Eight flag marbles bounce down a glowing course of pegs, ramps and bumpers in Flag Drop Race #3, and the finish line is decided in slow motion."
+ },
+ "facebook_title": "Flag Drop: Race #3",
+ "tiktok_title": "Flag Drop · Race #3: 8 flags, 1 drop",
+ "comment": "Race #4 gets a fresh course. Which flag do you want to see back in the gate?",
+ "thumb_offset_ms": 2100,
+ "video": "lab/2026-11-15/s3.mp4",
+ "duration": 26.29,
+ "result": {
+  "winner": "MEXICO",
+  "podium": [
+   "MEXICO",
+   "FRANCE",
+   "AUSTRALIA"
+  ]
+ },
+ "posted": []
+}
