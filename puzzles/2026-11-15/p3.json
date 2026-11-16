@@ -63,5 +63,34 @@
  "created": "2026-11-15",
  "video": "puzzles/2026-11-15/p3.mp4",
  "duration": 23.9,
- "size_mb": 19.37
+ "size_mb": 19.37,
+ "caption_posted_ig": "One of these is wrong. You have 2.7 seconds.\n\nFour rounds of star faces, and every grid is busier than the last.\n\nHow many did you catch?\n\n#oddoneout #brainteaser #findthedifference #eyetest #thatdatalover\n",
+ "captions_by_target": {
+  "ig_thatdatalover": "One of these is wrong. You have 2.7 seconds.\n\nFour rounds of star faces, and every grid is busier than the last.\n\nHow many did you catch?\n\n#oddoneout #brainteaser #findthedifference #eyetest #thatdatalover\n",
+  "tiktok": "star faces, 2.7 seconds, one is wrong. how many rounds do you survive? #oddoneout #brainteaser #focus",
+  "facebook": "Four rounds of star faces, and in each one a single face is different. How many can you catch in 2.7 seconds?"
+ },
+ "media_id": "18076557251753793",
+ "posted": {
+  "ig_thatdatalover": "18076557251753793",
+  "tiktok": "metricool:429490701 (20:59 ET)"
+ },
+ "post_details": {
+  "ig_thatdatalover": {
+   "tool": "windsor",
+   "media_id": "18076557251753793",
+   "at": "2026-11-15T20:48-05:00"
+  },
+  "tiktok": {
+   "tool": "metricool",
+   "id": 429490701,
+   "uuid": "5302488040229128171",
+   "scheduled": "2026-11-15T20:59:00-05:00",
+   "status": "PENDING"
+  },
+  "facebook": {
+   "status": "pending",
+   "reason": "Metricool brand 8071801 has no Facebook page connected"
+  }
+ }
 }
