@@ -1,5 +1,5 @@
 {
- "episode": 8,
+ "episode": 9,
  "answers": {
   "1": 6,
   "2": 7,
@@ -8,26 +8,27 @@
   "5": 8,
   "6": 10,
   "7": 16,
-  "8": 10
+  "8": 10,
+  "9": 2
  },
  "palettes": [
-  "coral",
   "plum",
   "cherry",
   "porcelain",
   "emerald",
   "chrome",
   "sunflower",
-  "cherry"
+  "cherry",
+  "cobalt"
  ],
  "hooks": [
-  5,
   6,
   3,
   9,
   10,
   2,
   11,
-  4
+  4,
+  7
  ]
 }
