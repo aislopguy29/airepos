@@ -2,28 +2,58 @@
   python3 -I make.py --account eas|tdl --out DIR [--seed N --level L --episode E --state state/cups_<acct>.json]
 Builds plan -> synced audio -> 3D frames (headless Chromium WebGL) -> MP4 (1080x1920, 30 fps, H.264 + AAC) -> verification
 -> caption/comment json.  The answer is never rendered anywhere in the video; it only goes into the json and into the NEXT post's caption.
-Needs: node + global playwright (preinstalled), ffmpeg, numpy."""
+Needs: node + global playwright (preinstalled), ffmpeg, numpy.
+
+2026-11-17 revision: easier + more varied. Slower swaps and at most 2 simultaneous swaps (see LEVELS override below), a level mix that is
+mostly warm-up/easy/medium with only an occasional hard one, plus extra palettes, hooks, captions and call-outs so posts feel different."""
 import argparse, json, os, random, subprocess, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import plan as PL, audio as AU
 
-LEVEL_SEQ = [2, 3, 3, 4, 3, 4, 5, 3, 4, 5, 4, 5, 5, 4, 3, 4, 5, 5, 4, 5]
+# --- difficulty: level -> (shuffle seconds, first swap dur, last swap dur, max pairs at once). Longer swap durations = easier to track.
+PL.LEVELS.update({
+    1: (9.4, 0.66, 0.40, 1),    # warm-up: one swap at a time, slow
+    2: (10.0, 0.62, 0.34, 1),   # easy
+    3: (10.6, 0.58, 0.30, 2),   # medium
+    4: (11.0, 0.54, 0.26, 2),   # hard (occasional)
+    5: (11.4, 0.52, 0.23, 2),   # expert (rare)
+})
+# --- variety: extra palettes and hooks (highlight word must be a substring of the line)
+PL.PALETTES.update({
+    "mint":      dict(cup="#3ddcb4", ball="#ff5d8f", accent="#ff5d8f", table="#0d1f21", wood=("#b58455", "#68401f"), rough=0.20, metal=0.0),
+    "tangerine": dict(cup="#ff8a1f", ball="#6a4bff", accent="#9b86ff", table="#1b1226", wood=("#a9774a", "#5c3719"), rough=0.22, metal=0.0),
+    "ice":       dict(cup="#8ed8ff", ball="#ff3b6b", accent="#ff6b8e", table="#0e1a2b", wood=("#9c6e45", "#52311a"), rough=0.14, metal=0.0),
+})
+PL.HOOKS.extend([
+    ("EASY ONE. OR IS IT?", "EASY"), ("CAN YOU KEEP UP?", "KEEP"), ("ONLY THE FOCUSED GET THIS", "FOCUSED"),
+    ("WARM-UP ROUND", "WARM-UP"), ("FOLLOW THE BALL HOME", "HOME"), ("BET YOU GET THIS ONE", "BET"),
+])
+
+# mostly easy: 1 warm-up, 2 easy, 3 medium, with a hard one now and then
+LEVEL_SEQ = [1, 2, 2, 3, 1, 2, 3, 2, 3, 4, 2, 1, 3, 2, 3, 4, 2, 3, 1, 3]
+LEVEL_NAME = {1: "Warm-up", 2: "Easy", 3: "Medium", 4: "Hard", 5: "Expert"}
 HASH_POOL = ["#cupgame", "#shellgame", "#findtheball", "#eyetest", "#focuschallenge", "#brainteaser", "#trackingchallenge",
-             "#puzzlechallenge", "#satisfying", "#braintest", "#visualtest", "#focustest", "#guessthecup", "#oddlysatisfying"]
+             "#puzzlechallenge", "#satisfying", "#braintest", "#visualtest", "#focustest", "#guessthecup", "#oddlysatisfying",
+             "#challenge", "#guessinggame", "#quickgame"]
 # caption structures: each returns (first line, body). {p} = previous answer line (may be empty).
 def captions(ep, level, account, prev, rng):
     pa = f"\n\nLast puzzle's answer: cup {prev} ✅" if prev else ""
+    nm = LEVEL_NAME.get(level, str(level))
     asks = ["Which cup is it? Drop your number below 👇", "Lock in your number and comment it 👇", "Cup number? Answer in the comments 👇",
-            "Where did the ball end up? Number below 👇", "Comment the cup you landed on 👇"]
+            "Where did the ball end up? Number below 👇", "Comment the cup you landed on 👇",
+            "Left side or right side? Then give me the exact number 👇", "Got it? Prove it with the cup number 👇",
+            "No cheating: type your number before you scroll 👇"]
     heads = {
-        1: ["16 cups. 1 ball. It only gets faster 👀", "Eyes on the ball. No rewind.", "Think you can keep up? 🔴", "Don't blink. Seriously. 👀", "One look under the cup, then it's all on you"],
-        2: ["Level {l} of 5 and the shuffle is already quick", "Level {l}: faster, tighter, no mercy", "Level {l} focus test. How many can you get?", "Level {l} out of 5. Stay with it to the end."],
+        1: ["16 cups. 1 ball. Can you follow it? 👀", "Eyes on the ball. No rewind.", "Think you can keep up? 🔴", "Don't blink. Seriously. 👀",
+            "One look under the cup, then it's all on you", "Easy one? Let's see 😏", "Bet you get this one"],
+        2: ["{n} round. Think you can get it?", "{n} focus test. How many of you will get it?", "{n} mode: watch it, then answer.",
+            "Today's puzzle is {n}. Your move."],
     }
-    h = rng.choice(heads[1] + [x.format(l=level) for x in heads[2]])
+    h = rng.choice(heads[1] + [x.format(n=nm) for x in heads[2]])
     body = {
-        0: f"One ball, sixteen cups, and the swaps speed up the whole way. Puzzle #{ep}, level {level}.\n\n{rng.choice(asks)}{pa}",
-        1: f"Puzzle #{ep} · Level {level}/5\nWatch the ball, then answer once the numbers appear.\n\n{rng.choice(asks)}{pa}",
-        2: f"Watch it go under the cup. Keep track through every swap. Puzzle #{ep} (level {level}).\n\n{rng.choice(asks)}{pa}",
+        0: f"One ball, sixteen cups. Puzzle #{ep}, {nm} mode.\n\n{rng.choice(asks)}{pa}",
+        1: f"Puzzle #{ep} · {nm}\nWatch the ball, then answer once the numbers appear.\n\n{rng.choice(asks)}{pa}",
+        2: f"Watch it go under the cup. Keep track through every swap. Puzzle #{ep} ({nm}).\n\n{rng.choice(asks)}{pa}",
     }[(ep + (0 if account == "eas" else 1)) % 3]
     return h, body
 
@@ -71,9 +101,9 @@ def main():
     seed = a.seed or random.SystemRandom().randrange(10000, 99999)
     level = a.level or LEVEL_SEQ[(ep - 1) % len(LEVEL_SEQ)]
     rng = random.Random(seed * 7 + ep)
-    # variety: avoid the last 3 palettes / hooks used on this account
-    pals = [p for p in sorted(PL.PALETTES) if p not in st["palettes"][-3:]] or sorted(PL.PALETTES)
-    hooks = [i for i in range(len(PL.HOOKS)) if i not in st["hooks"][-4:]]
+    # variety: avoid the last 4 palettes / 5 hooks used on this account
+    pals = [p for p in sorted(PL.PALETTES) if p not in st["palettes"][-4:]] or sorted(PL.PALETTES)
+    hooks = [i for i in range(len(PL.HOOKS)) if i not in st["hooks"][-5:]] or list(range(len(PL.HOOKS)))
     plan = PL.make_plan(seed, level, palette=a.palette or rng.choice(pals), hook=rng.choice(hooks), episode=ep)
     answer = verify_plan(plan)
     pj, wav, frames, mp4 = [os.path.join(a.out, n) for n in ("plan.json", "audio.wav", "frames", "video.mp4")]
