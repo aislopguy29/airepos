@@ -1,0 +1,19 @@
+{
+ "id": "cups_eas_010",
+ "account": "eas",
+ "episode": 10,
+ "level": 4,
+ "seed": 38973,
+ "palette": "porcelain",
+ "hook": "WHERE DID IT GO?",
+ "music": "marimba",
+ "caption": "Eyes on the ball. No rewind.\n\nPuzzle #10 \u00b7 Hard\nWatch the ball, then answer once the numbers appear.\n\nComment the cup you landed on \ud83d\udc47\n\nLast puzzle's answer: cup 2 \u2705\n\n#cupgame #oddlysatisfying #brainteaser #challenge",
+ "comment": "Answer drops in the next post. Drop your number before then \ud83d\udc47",
+ "thumb_offset_ms": 1800,
+ "video": "cups/posts/2026-11-17_evening_eas/video.mp4",
+ "answer": 16,
+ "duration": 15.88,
+ "size_mb": 17.4,
+ "fps": 30.0,
+ "mean_db": -19.4
+}
