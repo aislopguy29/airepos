@@ -1,0 +1,19 @@
+{
+ "id": "cups_eas_015",
+ "account": "eas",
+ "episode": 15,
+ "level": 3,
+ "seed": 31277,
+ "palette": "sunflower",
+ "hook": "DON'T BLINK",
+ "music": "wood",
+ "caption": "Medium mode: watch it, then answer.\n\nOne ball, sixteen cups. Puzzle #15, Medium mode.\n\nWhich cup is it? Drop your number below \ud83d\udc47\n\nLast puzzle's answer: cup 3 \u2705\n\n#oddlysatisfying #eyetest #findtheball #quickgame",
+ "comment": "Lock your answer in now. The next post shows the result \ud83d\udc47",
+ "thumb_offset_ms": 1800,
+ "video": "cups/posts/2026-11-19_midday_eas/video.mp4",
+ "answer": 4,
+ "duration": 15.39,
+ "size_mb": 24.2,
+ "fps": 30.0,
+ "mean_db": -19.7
+}
