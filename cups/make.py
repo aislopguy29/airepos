@@ -91,11 +91,32 @@ def probe(path):
     mean = float(vol.split("mean_volume:")[1].split("dB")[0]); assert mean > -40, f"silent audio {mean}"
     return dict(duration=round(d, 2), size_mb=round(sz / 1e6, 1), fps=round(fps, 2), mean_db=mean)
 
+def prune_posted_videos(keep_dir):
+    """Storage hygiene: delete (git rm, staged) the video of every cups post that already has a media_id, so the repo holds only the video
+    currently being posted. Code, post.json and state files are kept. Never fatal: any problem just skips pruning."""
+    try:
+        root = subprocess.check_output(["git", "-C", HERE, "rev-parse", "--show-toplevel"], text=True).strip()
+        tracked = subprocess.check_output(["git", "-C", root, "ls-files", "cups/posts"], text=True).split("\n")
+        keep = os.path.relpath(os.path.abspath(keep_dir), root)
+        gone = []
+        for f in tracked:
+            if not f.endswith("/video.mp4") or os.path.dirname(f) == keep: continue
+            pj = os.path.join(root, os.path.dirname(f), "post.json")
+            try: posted = bool(json.load(open(pj)).get("media_id"))
+            except Exception: posted = False
+            if posted: gone.append(f)
+        for i in range(0, len(gone), 50):
+            subprocess.run(["git", "-C", root, "rm", "-q", "--"] + gone[i:i + 50], check=False)
+        print(f"pruned {len(gone)} posted videos", file=sys.stderr)
+    except Exception as e:
+        print(f"prune skipped: {e}", file=sys.stderr)
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--account", default="eas", choices=["eas", "tdl"]); ap.add_argument("--out", required=True)
     ap.add_argument("--seed", type=int); ap.add_argument("--level", type=int); ap.add_argument("--episode", type=int); ap.add_argument("--state")
     ap.add_argument("--palette"); ap.add_argument("--keep-frames", action="store_true"); a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
+    prune_posted_videos(a.out)
     st = json.load(open(a.state)) if a.state and os.path.exists(a.state) else {"episode": 0, "answers": {}, "palettes": [], "hooks": []}
     ep = a.episode or st["episode"] + 1
     seed = a.seed or random.SystemRandom().randrange(10000, 99999)
