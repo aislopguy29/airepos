@@ -1,0 +1,19 @@
+{
+ "id": "cups_eas_018",
+ "account": "eas",
+ "episode": 18,
+ "level": 3,
+ "seed": 36086,
+ "palette": "porcelain",
+ "hook": "EASY ONE. OR IS IT?",
+ "music": "kalimba",
+ "caption": "Today's puzzle is Medium. Your move.\n\nOne ball, sixteen cups. Puzzle #18, Medium mode.\n\nGot it? Prove it with the cup number \ud83d\udc47\n\nLast puzzle's answer: cup 8 \u2705\n\n#quickgame #braintest #brainteaser #eyetest",
+ "comment": "Reveal comes with the next puzzle. Number below \ud83d\udc47",
+ "thumb_offset_ms": 1800,
+ "video": "cups/posts/2026-11-19_evening_eas/video.mp4",
+ "answer": 4,
+ "duration": 15.39,
+ "size_mb": 25.8,
+ "fps": 30.0,
+ "mean_db": -19.2
+}
